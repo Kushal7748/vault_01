@@ -7,7 +7,13 @@ edition = "2021"
 crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
+
 flutter_rust_bridge = "=2.11.1"
+
+# The Database Engine
+# feature "bundled-sqlcipher" = Downloads & statically links SQLCipher (Encryption supported)
+# We avoid "bundled" because that gives us plain text SQLite.
+rusqlite = { version = "0.31.0", features = ["bundled-sqlcipher"] }
 
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(frb_expand)'] }
