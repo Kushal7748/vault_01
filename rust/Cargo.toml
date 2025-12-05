@@ -8,7 +8,10 @@ crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 
-flutter_rust_bridge = "=2.11.1"
+rusqlite = { version = "0.31.0", features = ["bundled"] }
+lazy_static = "1.4.0" # <-- ADD THIS LINE
+parking_lot = "0.12.1" # <-- ADD THIS LINE (For the Mutex)
+ 
 
 # The Database Engine
 # feature "bundled-sqlcipher" = Downloads & statically links SQLCipher (Encryption supported)

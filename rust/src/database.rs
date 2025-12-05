@@ -1,26 +1,27 @@
 use rusqlite::{Connection, Result};
 use std::path::Path;
 
-pub struct VaultDb {
+pub struct DbHandle {
     conn: Connection,
 }
 
-impl VaultDb {
+impl DbHandle {
     pub fn init(db_path: String, key: String) -> Result<Self> {
         let path = Path::new(&db_path);
-        let conn = Connection::open(path)?;
+        let conn = Connection::open(db_path)?;
 
         // Set Key
         conn.pragma_update(None, "key", &key)?;
 
         // Create Table
         conn.execute(
-            "CREATE TABLE IF NOT EXISTS memories (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                content TEXT NOT NULL,
-                tags TEXT,
-                created_at TEXT DEFAULT CURRENT_TIMESTAMP
-            )",
+           "CREATE TABLE IF NOT EXISTS memory_fragments (
+        id             INTEGER PRIMARY KEY,
+        content        TEXT NOT NULL,
+        timestamp      INTEGER NOT NULL,
+        tags           TEXT,
+        embedding_id   TEXT
+    )",
             [],
         )?;
         
@@ -30,7 +31,7 @@ impl VaultDb {
 
     pub fn insert_memory(&self, content: String) -> Result<()> {
         self.conn.execute("INSERT INTO memories (content) VALUES (?1)", [&content])?;
-        Ok(())
+        Ok((DbHandle { conn }))
     }
 
     // CHANGED: Returns a List of Tuples (id, content, date) instead of a Struct
