@@ -7,16 +7,11 @@ edition = "2021"
 crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
+# This single entry combines the dependency with all necessary features.
+rusqlite = { version = "0.31.0", features = ["bundled-sqlcipher"] } 
 
-rusqlite = { version = "0.31.0", features = ["bundled"] }
-lazy_static = "1.4.0" # <-- ADD THIS LINE
-parking_lot = "0.12.1" # <-- ADD THIS LINE (For the Mutex)
- 
-
-# The Database Engine
-# feature "bundled-sqlcipher" = Downloads & statically links SQLCipher (Encryption supported)
-# We avoid "bundled" because that gives us plain text SQLite.
-rusqlite = { version = "0.31.0", features = ["bundled-sqlcipher"] }
+lazy_static = "1.4.0"
+parking_lot = "0.12.1"
 
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(frb_expand)'] }

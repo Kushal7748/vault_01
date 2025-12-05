@@ -62,9 +62,9 @@ pub extern "C" fn initialize_vault(db_file_path: *const std::os::raw::c_char) ->
         println!("Vault already initialized. Skipping.");
         return true;
     }
-
+let db_key = String::from("");
     // 3. Perform the actual database initialization
-    match DbHandle::init(path) {
+    match DbHandle::init(path.to_string_lossy().to_string(), db_key) {
         Ok(handle) => {
             println!("Vault database initialized successfully! Path: {}", db_path_str);
             // Store the handle in the global static variable

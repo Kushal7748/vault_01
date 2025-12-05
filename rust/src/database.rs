@@ -26,12 +26,12 @@ impl DbHandle {
         )?;
         
         println!("✅ Vault_01 Enclave Initialized");
-        Ok(VaultDb { conn })
+        Ok(DbHandle { conn })
     }
 
     pub fn insert_memory(&self, content: String) -> Result<()> {
         self.conn.execute("INSERT INTO memories (content) VALUES (?1)", [&content])?;
-        Ok((DbHandle { conn }))
+        Ok(())
     }
 
     // CHANGED: Returns a List of Tuples (id, content, date) instead of a Struct
