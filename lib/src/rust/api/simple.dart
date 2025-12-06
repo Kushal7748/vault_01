@@ -6,6 +6,8 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// matches the 'save_memory' function currently in your Rust backend
+Future<String> initDb({required String appDocDir}) =>
+    RustLib.instance.api.crateApiSimpleInitDb(appDocDir: appDocDir);
+
 Future<String> saveMemory({required String content}) =>
     RustLib.instance.api.crateApiSimpleSaveMemory(content: content);

@@ -1,59 +1,47 @@
-use rusqlite::{Connection, Result};
-use std::path::Path;
+// rust/src/database.rs
+use rusqlite::{params, Connection, Result};
 
-pub struct DbHandle {
+pub struct Database {
     conn: Connection,
 }
 
-impl DbHandle {
-    pub fn init(db_path: String, key: String) -> Result<Self> {
-        let path = Path::new(&db_path);
-        let conn = Connection::open(db_path)?;
-
-        // Set Key
-        conn.pragma_update(None, "key", &key)?;
-
-        // Create Table
+impl Database {
+    // 1. Open (or create) the database file
+    pub fn open(path: String) -> Result<Self> {
+        let conn = Connection::open(path)?;
+        
+        // 2. Create the table if it doesn't exist
         conn.execute(
-           "CREATE TABLE IF NOT EXISTS memory_fragments (
-        id             INTEGER PRIMARY KEY,
-        content        TEXT NOT NULL,
-        timestamp      INTEGER NOT NULL,
-        tags           TEXT,
-        embedding_id   TEXT
-    )",
+            "CREATE TABLE IF NOT EXISTS memories (
+                id INTEGER PRIMARY KEY,
+                content TEXT NOT NULL,
+                date_added TEXT NOT NULL
+            )",
             [],
         )?;
-        
-        println!("✅ Vault_01 Enclave Initialized");
-        Ok(DbHandle { conn })
+
+        Ok(Database { conn })
     }
 
-    pub fn insert_memory(&self, content: String) -> Result<()> {
-        self.conn.execute("INSERT INTO memories (content) VALUES (?1)", [&content])?;
+    // 3. Save a memory
+    pub fn add_memory(&self, content: String) -> Result<()> {
+        let date = "2025-12-06"; // Placeholder date for now
+        self.conn.execute(
+            "INSERT INTO memories (content, date_added) VALUES (?1, ?2)",
+            params![content, date],
+        )?;
         Ok(())
     }
 
-    // CHANGED: Returns a List of Tuples (id, content, date) instead of a Struct
-    // This avoids dependency issues.
-    pub fn read_recent_memories(&self) -> Result<Vec<(i64, String, String)>> {
-        let mut stmt = self.conn.prepare(
-            "SELECT id, content, created_at FROM memories ORDER BY id DESC LIMIT 10"
-        )?;
-
-        let rows = stmt.query_map([], |row| {
-            Ok((
-                row.get(0)?, // id
-                row.get(1)?, // content
-                row.get(2)?, // created_at
-            ))
-        })?;
+    // 4. Read all memories (We will use this later)
+    pub fn get_memories(&self) -> Result<Vec<String>> {
+        let mut stmt = self.conn.prepare("SELECT content FROM memories ORDER BY id DESC")?;
+        let rows = stmt.query_map([], |row| row.get(0))?;
 
         let mut results = Vec::new();
         for r in rows {
             results.push(r?);
         }
-        
         Ok(results)
     }
-} 
+}
