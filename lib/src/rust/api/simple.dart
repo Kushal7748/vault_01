@@ -6,35 +6,6 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<String> initDatabase({required String path, required String key}) =>
-    RustLib.instance.api.crateApiSimpleInitDatabase(path: path, key: key);
-
-Future<String> insertMemory({required String content}) =>
-    RustLib.instance.api.crateApiSimpleInsertMemory(content: content);
-
-Future<List<Memory>> readMemories() =>
-    RustLib.instance.api.crateApiSimpleReadMemories();
-
-class Memory {
-  final PlatformInt64 id;
-  final String content;
-  final String createdAt;
-
-  const Memory({
-    required this.id,
-    required this.content,
-    required this.createdAt,
-  });
-
-  @override
-  int get hashCode => id.hashCode ^ content.hashCode ^ createdAt.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Memory &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          content == other.content &&
-          createdAt == other.createdAt;
-}
+// matches the 'save_memory' function currently in your Rust backend
+Future<String> saveMemory({required String content}) =>
+    RustLib.instance.api.crateApiSimpleSaveMemory(content: content);
