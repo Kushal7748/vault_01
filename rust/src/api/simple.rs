@@ -1,56 +1,18 @@
-use crate::database::VaultDb;
-use std::sync::Mutex;
+// rust/src/api/simple.rs
 
-// --- 1. DEFINE STRUCT HERE (Best for Bridge) ---
-pub struct Memory {
-    pub id: i64,
-    pub content: String,
-    pub created_at: String,
-}
+// --- 1. SIMPLE BRIDGE TEST ---
 
-// --- GLOBAL STATE ---
-static DB: Mutex<Option<VaultDb>> = Mutex::new(None);
-
-// --- FLUTTER API ---
-
-pub fn init_database(path: String, key: String) -> String {
-    match VaultDb::init(path, key) {
-        Ok(db) => {
-            let mut global_db = DB.lock().unwrap();
-            *global_db = Some(db);
-            "Success".to_string()
-        }
-        Err(e) => format!("Error: {}", e),
+// This function receives the memory text from Flutter
+pub fn save_memory(content: String) -> String {
+    // 1. Validation: Check if the memory is empty
+    if content.is_empty() {
+        return "Error: Memory cannot be empty".to_string();
     }
-}
 
-pub fn insert_memory(content: String) -> String {
-    let global_db = DB.lock().unwrap();
-    if let Some(db) = &*global_db {
-        match db.insert_memory(content) {
-            Ok(_) => "Success".to_string(),
-            Err(e) => format!("Database Error: {}", e),
-        }
-    } else {
-        "Error: Database is not initialized!".to_string()
-    }
-}
+    // 2. Debugging: Print to the Rust console so we can see it working
+    println!("RUST: Received memory -> {}", content);
 
-pub fn read_memories() -> Vec<Memory> {
-    let global_db = DB.lock().unwrap();
-    if let Some(db) = &*global_db {
-        // We get raw tuples from DB, then convert to Memory struct here
-        match db.read_recent_memories() {
-            Ok(raw_data) => {
-                raw_data.into_iter().map(|(id, content, created_at)| Memory {
-                    id,
-                    content,
-                    created_at
-                }).collect()
-            },
-            Err(_) => Vec::new(), 
-        }
-    } else {
-        Vec::new()
-    }
+    // 3. Response: Return a success message back to Flutter
+    // (We will swap this with the Database code you showed me tomorrow!)
+    format!("Successfully secured {} characters!", content.len())
 }

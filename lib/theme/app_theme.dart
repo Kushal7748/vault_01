@@ -15,7 +15,6 @@ final ThemeData vaultDarkTheme = ThemeData(
   colorScheme: const ColorScheme.dark(
     primary: _primaryColor,
     surface: _surfaceColor,
-    background: _backgroundColor,
     onPrimary: _onPrimaryColor,
     onSurface: _onSurfaceColor,
   ),

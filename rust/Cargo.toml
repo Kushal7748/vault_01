@@ -1,5 +1,5 @@
 [package]
-name = "rust_lib_vault_01"
+name = "rust_lib"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,11 +7,6 @@ edition = "2021"
 crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
-# This single entry combines the dependency with all necessary features.
-rusqlite = { version = "0.31.0", features = ["bundled-sqlcipher"] } 
-
-lazy_static = "1.4.0"
-parking_lot = "0.12.1"
-
-[lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(frb_expand)'] }
+# We only want the bridge for now. NO DATABASE yet.
+flutter_rust_bridge = "=2.11.1" 
+flutter_rust_bridge_macros = "2"

@@ -1,5 +1,6 @@
-// lib/screens/input_screen.dart
 import 'package:flutter/material.dart';
+// 1. Import the Rust API
+import 'package:vault_01/src/rust/api/simple.dart';
 
 class InputScreen extends StatefulWidget {
   const InputScreen({super.key});
@@ -9,69 +10,67 @@ class InputScreen extends StatefulWidget {
 }
 
 class _InputScreenState extends State<InputScreen> {
-  final TextEditingController _memoryController = TextEditingController();
+  // Controller to handle the text input
+  final TextEditingController _controller = TextEditingController();
 
-  @override
-  void dispose() {
-    _memoryController.dispose();
-    super.dispose();
+  // Variable to show feedback from Rust
+  String _statusMessage = "";
+
+  Future<void> _handleSave() async {
+    final text = _controller.text;
+    if (text.isEmpty) return;
+
+    // FIX: We call 'saveMemory' instead of 'greet'
+    // This matches the Rust function we just wrote.
+    final result = await saveMemory(content: text);
+
+    setState(() {
+      _statusMessage = result;
+    });
+
+    // Clear input if successful
+    if (!result.contains("Error")) {
+      _controller.clear();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Capture Memory'),
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text("Vault_01")),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: TextField(
-                controller: _memoryController,
-                autofocus: true,
-                maxLines: null,
-                keyboardType: TextInputType.multiline,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-                decoration: const InputDecoration(
-                  hintText: 'What are you thinking right now?...',
-                  contentPadding: EdgeInsets.all(20.0),
-                ),
+            // Input Field
+            TextField(
+              controller: _controller,
+              decoration: const InputDecoration(
+                labelText: 'Enter Secret Memory',
+                border: OutlineInputBorder(),
               ),
+              maxLines: 3,
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  if (_memoryController.text.isNotEmpty) {
-                    print("Saving: ${_memoryController.text}");
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Encrypting & Saving...')),
-                    );
-                  }
-                },
-                icon: const Icon(Icons.security, size: 20),
-                label: const Text(
-                  'Seal & Save to Vault',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+
+            // Save Button
+            ElevatedButton(
+              onPressed: _handleSave,
+              child: const Text("Secure Memory"),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Feedback Text
+            if (_statusMessage.isNotEmpty)
+              Text(
+                "RUST SAYS: $_statusMessage",
+                style: const TextStyle(
+                  color: Colors.greenAccent,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
           ],
         ),
       ),
