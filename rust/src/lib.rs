@@ -2,7 +2,7 @@ mod frb_generated; /* AUTO INJECTED BY flutter_rust_bridge. This line may not be
 // src/lib.rs
 
 // --- Imports ---
-use std::ffi::{CStr, CString};
+use std::ffi::CStr;
 use parking_lot::Mutex;
 use lazy_static::lazy_static;
 use std::os::raw::c_char;
