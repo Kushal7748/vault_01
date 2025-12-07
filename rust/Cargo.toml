@@ -9,6 +9,9 @@ crate-type = ["cdylib", "staticlib"]
 [dependencies]
 flutter_rust_bridge = "=2.11.1"
 flutter_rust_bridge_macros = "2"
+# ... existing dependencies (rusqlite, parking_lot, etc.)
+once_cell = "1.18" # Add this line
+# You may also need to ensure 'tokio' is present if using async functions with FRB
 
 # Database (Bundled to avoid OpenSSL errors)
 rusqlite = { version = "0.31", features = ["bundled"] }

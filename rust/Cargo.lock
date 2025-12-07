@@ -642,6 +642,7 @@ dependencies = [
  "flutter_rust_bridge",
  "flutter_rust_bridge_macros",
  "lazy_static",
+ "once_cell",
  "parking_lot",
  "rusqlite",
 ]
