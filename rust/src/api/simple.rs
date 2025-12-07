@@ -1,35 +1,46 @@
-// rust/src/api/simple.rs
-use crate::database::Database;
-use std::sync::Mutex;
-use once_cell::sync::Lazy; // Helper to keep DB open
+// src/rust/api/simple.rs (FRB Entry Point)
 
-// Global Database Connection (Thread-safe)
-static DB: Lazy<Mutex<Option<Database>>> = Lazy::new(|| Mutex::new(None));
+use crate::database::VaultDb;
+use parking_lot::Mutex;
+use lazy_static::lazy_static;
 
-// 1. Initialize the Database (Flutter calls this when app starts)
-pub fn init_db(app_doc_dir: String) -> String {
-    let db_path = format!("{}/vault.db", app_doc_dir);
-    
-    match Database::open(db_path.clone()) {
-        Ok(db) => {
-            let mut global_db = DB.lock().unwrap();
-            *global_db = Some(db);
-            format!("Database ready at: {}", db_path)
-        }
-        Err(e) => format!("Database Init Failed: {}", e),
-    }
+// --- Global State Management (The same as before, now in the FRB API file) ---
+lazy_static! {
+   // The Option<VaultDb> holds the single, thread-safe instance
+   static ref DB_HANDLE: Mutex<Option<VaultDb>> = Mutex::new(None); 
 }
 
-// 2. Save Memory (Flutter calls this when you click button)
-pub fn save_memory(content: String) -> String {
-    let global_db = DB.lock().unwrap();
+/// Initializes the Vault database, applying the encryption key and setting up tables.
+/// 
+/// This is the FRB public function called from Dart.
+pub async fn init_db(db_file_path: String, encryption_key: String) -> Result<(), String> {
     
-    if let Some(db) = &*global_db {
-        match db.add_memory(content) {
-            Ok(_) => "Success! Memory saved to Disk.".to_string(),
-            Err(e) => format!("Failed to save: {}", e),
+    // 1. Check for double initialization
+    let mut handle_guard = DB_HANDLE.lock();
+    if handle_guard.is_some() {
+        println!("Vault already initialized. Skipping.");
+        return Ok(());
+    }
+
+    // 2. Initialize the thread-safe connection using the core logic
+    match VaultDb::new(&db_file_path, &encryption_key) {
+        Ok(db) => {
+            println!("Vault database initialized successfully!");
+            
+            // 3. Run the initial table setup
+            match db.execute_initial_setup() {
+                Ok(_) => {
+                    // Store the handle only after successful setup
+                    *handle_guard = Some(db); 
+                    Ok(())
+                }
+                Err(e) => {
+                    Err(format!("Table creation failed: {:?}", e))
+                }
+            }
         }
-    } else {
-        "Error: Database not initialized!".to_string()
+        Err(e) => {
+            Err(format!("Database initialization failed: {:?}", e))
+        }
     }
 }
