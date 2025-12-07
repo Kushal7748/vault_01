@@ -195,7 +195,6 @@
 				FB6711FC2E714273185CEA27 /* Pods-RunnerTests.release.xcconfig */,
 				C11BE2926C7898DA7A15396F /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -235,11 +234,12 @@
 			buildConfigurationList = 33CC10FB2044A3C60003C045 /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
 				894F5BD620670867EF57B074 /* [CP] Check Pods Manifest.lock */,
+				13DDE5142EE5350D00AF9C20 /* Build Rust Library */,
 				33CC10E92044A3C60003C045 /* Sources */,
 				33CC10EA2044A3C60003C045 /* Frameworks */,
 				33CC10EB2044A3C60003C045 /* Resources */,
 				33CC110E2044A8840003C045 /* Bundle Framework */,
-				3399D490228B24CF009A79C7 /* ShellScript */,
+				3399D490228B24CF009A79C7 /* Run Script */,
 				66EBB01869BCF7AE8AEF4120 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -323,7 +323,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3399D490228B24CF009A79C7 /* ShellScript */ = {
+		13DDE5142EE5350D00AF9C20 /* Build Rust Library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Rust Library";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Navigate to the rust folder\n# PROJECT_DIR is inside 'macos', so we go up one level to 'rust'\ncd \"$SRCROOT/../rust\"\n\n# Check if we are in Debug or Release mode in Xcode and build accordingly\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    echo \"Building Rust in DEBUG mode...\"\n    cargo build\nelse\n    echo \"Building Rust in RELEASE mode...\"\n    cargo build --release\nfi\n";
+		};
+		3399D490228B24CF009A79C7 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -333,6 +351,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -579,8 +598,16 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}\"",
+					/usr/lib/swift,
+					"$(PROJECT_DIR)/../rust/target/${CONFIGURATION}",
+				);
+				NEW_SETTING = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
+				was = "$(PROJECT_DIR)/../build/macos/Build/Products/Debug";
 			};
 			name = Profile;
 		};
@@ -711,9 +738,17 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}\"",
+					/usr/lib/swift,
+					"$(PROJECT_DIR)/../rust/target/${CONFIGURATION}",
+				);
+				NEW_SETTING = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				was = "$(PROJECT_DIR)/../build/macos/Build/Products/Debug";
 			};
 			name = Debug;
 		};
@@ -731,8 +766,16 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}\"",
+					/usr/lib/swift,
+					"$(PROJECT_DIR)/../rust/target/${CONFIGURATION}",
+				);
+				NEW_SETTING = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
+				was = "$(PROJECT_DIR)/../build/macos/Build/Products/Debug";
 			};
 			name = Release;
 		};
