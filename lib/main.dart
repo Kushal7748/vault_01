@@ -20,7 +20,7 @@ Future<String> getDatabasePath() async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await RustLib.init();
+  //await RustLib.init();//
 
   final dbFilePath = await getDatabasePath();
   const String _encryptionKey = 'MyStrongSQLCipherKey12345!'; 

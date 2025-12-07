@@ -4,6 +4,10 @@ use crate::database::VaultDb;
 use parking_lot::Mutex;
 use lazy_static::lazy_static;
 
+// You need to include the flutter_rust_bridge macro usage if not already in scope
+// use flutter_rust_bridge::frb; 
+// (Assuming this is available globally or imported elsewhere if not here)
+
 // --- Global State Management (The same as before, now in the FRB API file) ---
 lazy_static! {
    // The Option<VaultDb> holds the single, thread-safe instance
@@ -13,6 +17,7 @@ lazy_static! {
 /// Initializes the Vault database, applying the encryption key and setting up tables.
 /// 
 /// This is the FRB public function called from Dart.
+#[frb] // <--- THIS IS THE CRITICAL MISSING ATTRIBUTE!
 pub async fn init_db(db_file_path: String, encryption_key: String) -> Result<(), String> {
     
     // 1. Check for double initialization

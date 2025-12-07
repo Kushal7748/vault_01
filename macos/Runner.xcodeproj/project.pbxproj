@@ -339,7 +339,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Navigate to the rust folder\n# PROJECT_DIR is inside 'macos', so we go up one level to 'rust'\ncd \"$SRCROOT/../rust\"\n\n# Check if we are in Debug or Release mode in Xcode and build accordingly\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    echo \"Building Rust in DEBUG mode...\"\n    cargo build\nelse\n    echo \"Building Rust in RELEASE mode...\"\n    cargo build --release\nfi\n";
+			shellScript = "# Navigate to the rust folder\n# PROJECT_DIR is inside 'macos', so we go up one level to 'rust'\ncd \"$SRCROOT/../rust\"\nflutter_rust_bridge_codegen generate\n\n# Check if we are in Debug or Release mode in Xcode and build accordingly\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    echo \"Building Rust in DEBUG mode...\"\n    cargo build\nelse\n    echo \"Building Rust in RELEASE mode...\"\n    cargo build --release\nfi\n";
 		};
 		3399D490228B24CF009A79C7 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
