@@ -1,3 +1,5 @@
+mod frb_generated; /* AUTO INJECTED BY flutter_rust_bridge. This line may not be accurate, and you can change it according to your needs. */
+pub mod api;
 // src/lib.rs
 mod database;
 use once_cell::sync::Lazy;
@@ -10,24 +12,7 @@ pub static DB_HANDLE: Lazy<Mutex<Option<VaultDb>>> = Lazy::new(|| Mutex::new(Non
 
 // --- Task B1.1R: FRB Refactor (initialize_vault) ---
 
-/// FRB function to initialize the encrypted database connection.
-pub async fn initialize_vault(db_path: String, encryption_key: String) -> Result<(), String> {
-    // 1. Initialize the VaultDb connection
-    match VaultDb::new(&db_path, &encryption_key) {
-        Ok(db) => {
-            // 2. Run the table setup query
-            db.execute_initial_setup()
-                .map_err(|e| format!("Database setup failed: {}", e))?;
-                
-            // 3. Lock the global handle and store the initialized connection
-            let mut handle = DB_HANDLE.lock();
-            *handle = Some(db);
-            
-            Ok(())
-        },
-        Err(e) => Err(format!("VaultDb initialization failed: {}", e)),
-    }
-}
+/*
 
 
 // --- Task B1.2R: Implement Write (save_memory) ---
@@ -48,3 +33,4 @@ pub async fn save_memory(content: String) -> Result<(), String> {
         Err(e) => Err(format!("SQLCipher INSERT failed: {}", e)), 
     }
 }
+    */

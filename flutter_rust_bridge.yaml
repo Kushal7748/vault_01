@@ -1,4 +1,19 @@
-rust_input: crate::api
-rust_root: rust/
-dart_output: lib/src/rust/frb_generated.dart # <-- ADDED FILENAME
-c_output: macos/Runner/frb_generated.h
+
+# In the root of your Vault_01 project directory
+
+# === flutter_rust_bridge Configuration (Final Corrected) ===
+
+# The new syntax: Specifies the Rust module path relative to rust_root
+rust_input: "crate::api"
+
+# Defines the path to the root of your Rust crate (where Cargo.toml is)
+rust_root: "rust/" 
+
+# Define where the Rust code for the generated bindings should go
+rust_output: "rust/src/frb_generated.rs"
+
+# Define where the Dart binding files should go
+dart_output: "lib/src/frb_generated"
+
+# Defines the Dart entry point for the user-facing API
+dart_entrypoint_class_name: "VaultRust"

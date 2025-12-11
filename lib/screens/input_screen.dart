@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // 1. Import the Rust API
-import 'package:vault_01/src/rust/api/simple.dart';
+import 'package:vault_01/src/frb_generated/api/simple.dart' as vault_api;
 
 class InputScreen extends StatefulWidget {
   const InputScreen({super.key});
@@ -22,15 +22,16 @@ class _InputScreenState extends State<InputScreen> {
 
     // FIX: We call 'saveMemory' instead of 'greet'
     // This matches the Rust function we just wrote.
-    final result = await saveMemory(content: text);
-
-    setState(() {
-      _statusMessage = result;
-    });
-
-    // Clear input if successful
-    if (!result.contains("Error")) {
+    try {
+      await vault_api.saveMemory(content: text);
+      setState(() {
+        _statusMessage = "Memory saved successfully!";
+      });
       _controller.clear();
+    } catch (e) {
+      setState(() {
+        _statusMessage = "Error: $e";
+      });
     }
   }
 

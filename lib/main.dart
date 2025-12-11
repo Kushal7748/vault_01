@@ -1,13 +1,15 @@
-// lib/main.dart (Final complete version)
+// lib/main.dart (Using RELATIVE PATHS as a fix)
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path; 
+import 'dart:io' show Platform, File, Directory;
 
-// FRB Imports
-import 'package:vault_01/src/rust/frb_generated.dart'; 
-import 'package:vault_01/src/rust/api/simple.dart'; 
+// FRB Imports: USING RELATIVE PATHS (Assuming main.dart is in lib/)
+import 'package:vault_01/src/frb_generated/frb_generated.dart';
+import 'package:vault_01/src/frb_generated/api/simple.dart' as simple;
+import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+ 
 
 // --- Helper Functions ---
 Future<String> getDatabasePath() async {
@@ -20,19 +22,33 @@ Future<String> getDatabasePath() async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //await RustLib.init();//
+  // Try to load the Rust dynamic library directly from the local cargo build
+  // output when running on macOS (useful for `flutter run` debug sessions).
+  ExternalLibrary? extLib;
+  if (Platform.isMacOS) {
+    final possible = path.join(Directory.current.path, 'rust', 'target', 'debug', 'librust_lib_vault_01.dylib');
+    final f = File(possible);
+    if (f.existsSync()) {
+      extLib = ExternalLibrary.open(possible);
+      print('Using local Rust dylib at: $possible');
+    }
+  }
+
+  // Initialize FRB; pass `externalLibrary` when available to avoid the
+  // framework lookup issue on macOS during local debug builds.
+  await VaultRust.init(externalLibrary: extLib);
 
   final dbFilePath = await getDatabasePath();
   const String _encryptionKey = 'MyStrongSQLCipherKey12345!'; 
   
   print("--- Starting Vault Initialization Test (FRB) ---");
-  print("Target DB File Path: $dbFilePath");
   
   try {
-    // Calling the function with the path, using the generated parameter name 'appDocDir'.
-    final dbStatus = await initDb(appDocDir: dbFilePath); 
-    
-    print("DATABASE STATUS (Success String): $dbStatus");
+   // lib/main.dart
+await simple.initializeVault(
+  dbPath: dbFilePath,
+  encryptionKey: _encryptionKey,
+);
     print("✅ Initialization and Table Creation SUCCESSFUL.");
 
   } catch (e) {
@@ -43,33 +59,24 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-// --- Application Structure (Ensure this class is present) ---
-
-// lib/main.dart (or wherever your MyApp widget is defined)
-
+// ... MyApp Class
+// ... MyApp Class (unchanged)
+// --- Application Structure ---
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // 1. MaterialApp sets up the core theme
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Vault_01',
-      // Using dark theme, which often results in a black background
       theme: ThemeData.dark(useMaterial3: true), 
-      
-      // 2. FIX: Use Scaffold to guarantee visual structure and background color
       home: Scaffold(
-        // Set an explicit, non-black background color for testing
         backgroundColor: Colors.indigo[900], 
-        
         appBar: AppBar(
           title: const Text('Vault 01 - FFI Success!'),
-          // Optional: Set a contrasting color for the app bar
           backgroundColor: Colors.deepPurple, 
         ),
-        
         body: const Center(
           child: Text(
             'FFI Initialization Confirmed.',

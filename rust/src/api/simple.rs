@@ -1,51 +1,40 @@
-// src/rust/api/simple.rs (FRB Entry Point)
+// src/rust/api/simple.rs
 
 use crate::database::VaultDb;
-use parking_lot::Mutex;
-use lazy_static::lazy_static;
+use crate::DB_HANDLE;
 
-// You need to include the flutter_rust_bridge macro usage if not already in scope
-// use flutter_rust_bridge::frb; 
-// (Assuming this is available globally or imported elsewhere if not here)
-
-// --- Global State Management (The same as before, now in the FRB API file) ---
-lazy_static! {
-   // The Option<VaultDb> holds the single, thread-safe instance
-   static ref DB_HANDLE: Mutex<Option<VaultDb>> = Mutex::new(None); 
+/// FRB function to initialize the encrypted database connection.
+pub fn initialize_vault(db_path: String, encryption_key: String) -> Result<(), String> {
+    // 1. Initialize the VaultDb connection
+    match VaultDb::new(&db_path, &encryption_key) {
+        Ok(db) => {
+            // 2. Run the table setup query
+            db.execute_initial_setup()
+                .map_err(|e| format!("Database setup failed: {}", e))?;
+                
+            // 3. Lock the global handle and store the initialized connection
+            let mut handle = DB_HANDLE.lock();
+            *handle = Some(db);
+            
+            Ok(())
+        },
+        Err(e) => Err(format!("VaultDb initialization failed: {}", e)),
+    }
 }
 
-/// Initializes the Vault database, applying the encryption key and setting up tables.
-/// 
-/// This is the FRB public function called from Dart.
-#[frb] // <--- THIS IS THE CRITICAL MISSING ATTRIBUTE!
-pub async fn init_db(db_file_path: String, encryption_key: String) -> Result<(), String> {
+/// FRB function to securely save a new memory fragment.
+pub fn save_memory(content: String) -> Result<(), String> {
+    // 🔒 1. Acquire the Mutex Lock
+    let db_guard = DB_HANDLE.lock(); 
     
-    // 1. Check for double initialization
-    let mut handle_guard = DB_HANDLE.lock();
-    if handle_guard.is_some() {
-        println!("Vault already initialized. Skipping.");
-        return Ok(());
-    }
-
-    // 2. Initialize the thread-safe connection using the core logic
-    match VaultDb::new(&db_file_path, &encryption_key) {
-        Ok(db) => {
-            println!("Vault database initialized successfully!");
-            
-            // 3. Run the initial table setup
-            match db.execute_initial_setup() {
-                Ok(_) => {
-                    // Store the handle only after successful setup
-                    *handle_guard = Some(db); 
-                    Ok(())
-                }
-                Err(e) => {
-                    Err(format!("Table creation failed: {:?}", e))
-                }
-            }
-        }
-        Err(e) => {
-            Err(format!("Database initialization failed: {:?}", e))
-        }
+    // ❓ 2. Ensure the Database is Initialized
+    let db_handle = db_guard
+        .as_ref()
+        .ok_or_else(|| "Database not initialized. Please run initialize_vault first.".to_string())?;
+    
+    // 📝 3. Execute the INSERT Query
+    match db_handle.add_memory(content) {
+        Ok(_) => Ok(()),
+        Err(e) => Err(format!("SQLCipher INSERT failed: {}", e)), 
     }
 }

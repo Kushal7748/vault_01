@@ -9,7 +9,7 @@ PODS:
 DEPENDENCIES:
   - FlutterMacOS (from `Flutter/ephemeral`)
   - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin`)
-  - rust_lib_vault_01 (from `Flutter/ephemeral/.symlinks/plugins/rust_lib_vault_01/macos`)
+  - rust_lib_vault_01 (from `../rust_builder/macos`)
 
 EXTERNAL SOURCES:
   FlutterMacOS:
@@ -17,13 +17,13 @@ EXTERNAL SOURCES:
   path_provider_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin
   rust_lib_vault_01:
-    :path: Flutter/ephemeral/.symlinks/plugins/rust_lib_vault_01/macos
+    :path: "../rust_builder/macos"
 
 SPEC CHECKSUMS:
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
   path_provider_foundation: bb55f6dbba17d0dccd6737fe6f7f34fbd0376880
   rust_lib_vault_01: e11332a2a084771c175be1f517dbb4e11bf6deef
 
-PODFILE CHECKSUM: 54d867c82ac51cbd61b565781b9fada492027009
+PODFILE CHECKSUM: 4ce3cf72c204dfc7f536d02f4170bbfdf2e9afd9
 
 COCOAPODS: 1.16.2

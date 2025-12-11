@@ -1,0 +1,1632 @@
+.
+├── README.md
+├── analysis_options.yaml
+├── android
+│   ├── app
+│   │   ├── build.gradle.kts
+│   │   └── src
+│   │       ├── debug
+│   │       │   └── AndroidManifest.xml
+│   │       ├── main
+│   │       │   ├── AndroidManifest.xml
+│   │       │   ├── java
+│   │       │   │   └── io
+│   │       │   │       └── flutter
+│   │       │   │           └── plugins
+│   │       │   │               └── GeneratedPluginRegistrant.java
+│   │       │   ├── kotlin
+│   │       │   │   └── com
+│   │       │   │       └── example
+│   │       │   │           └── vault_01
+│   │       │   │               └── MainActivity.kt
+│   │       │   └── res
+│   │       │       ├── drawable
+│   │       │       │   └── launch_background.xml
+│   │       │       ├── drawable-v21
+│   │       │       │   └── launch_background.xml
+│   │       │       ├── mipmap-hdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── mipmap-mdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── mipmap-xhdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── mipmap-xxhdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── mipmap-xxxhdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── values
+│   │       │       │   └── styles.xml
+│   │       │       └── values-night
+│   │       │           └── styles.xml
+│   │       └── profile
+│   │           └── AndroidManifest.xml
+│   ├── build.gradle.kts
+│   ├── gradle
+│   │   └── wrapper
+│   │       ├── gradle-wrapper.jar
+│   │       └── gradle-wrapper.properties
+│   ├── gradle.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── local.properties
+│   ├── settings.gradle.kts
+│   └── vault_01_android.iml
+├── build
+│   ├── b341475b2318e9d51f243aa62388f8a9
+│   │   ├── _composite.stamp
+│   │   ├── gen_dart_plugin_registrant.stamp
+│   │   └── gen_localizations.stamp
+│   ├── ios
+│   │   └── Pods.build
+│   │       └── Release-iphonesimulator
+│   │           ├── Flutter.build
+│   │           │   └── dgph
+│   │           ├── Pods-Runner.build
+│   │           │   └── dgph
+│   │           ├── Pods-RunnerTests.build
+│   │           │   └── dgph
+│   │           ├── integration_test.build
+│   │           │   └── dgph
+│   │           ├── path_provider_foundation-path_provider_foundation_privacy.build
+│   │           │   └── dgph
+│   │           ├── path_provider_foundation.build
+│   │           │   └── dgph
+│   │           └── rust_lib_vault_01.build
+│   │               └── dgph
+│   ├── macos
+│   │   ├── Build
+│   │   │   ├── Intermediates.noindex
+│   │   │   │   ├── EagerLinkingTBDs
+│   │   │   │   │   └── Debug
+│   │   │   │   │       └── path_provider_foundation.framework
+│   │   │   │   │           ├── Versions
+│   │   │   │   │           │   └── A
+│   │   │   │   │           │       └── path_provider_foundation.tbd
+│   │   │   │   │           └── path_provider_foundation.tbd -> /Users/kushalgowdacm/vault_01/build/macos/Build/Intermediates.noindex/EagerLinkingTBDs/Debug/path_provider_foundation.framework/Versions/A/path_provider_foundation.tbd
+│   │   │   │   ├── Pods.build
+│   │   │   │   │   └── Debug
+│   │   │   │   │       ├── Pods-Runner.build
+│   │   │   │   │       │   ├── DerivedSources
+│   │   │   │   │       │   │   └── Pods_Runner_vers.c
+│   │   │   │   │       │   ├── Objects-normal
+│   │   │   │   │       │   │   └── arm64
+│   │   │   │   │       │   │       ├── 7187679823f38a2a940e0043cdf9d637-common-args.resp
+│   │   │   │   │       │   │       ├── Pods-Runner-dummy.d
+│   │   │   │   │       │   │       ├── Pods-Runner-dummy.dia
+│   │   │   │   │       │   │       ├── Pods-Runner-dummy.o
+│   │   │   │   │       │   │       ├── Pods_Runner.LinkFileList
+│   │   │   │   │       │   │       ├── Pods_Runner_libtool_dependency_info.dat
+│   │   │   │   │       │   │       ├── Pods_Runner_vers.d
+│   │   │   │   │       │   │       ├── Pods_Runner_vers.dia
+│   │   │   │   │       │   │       ├── Pods_Runner_vers.o
+│   │   │   │   │       │   │       └── e6072d4f65d7061329687fe24e3d63a7-common-args.resp
+│   │   │   │   │       │   ├── Pods_Runner-all-non-framework-target-headers.hmap
+│   │   │   │   │       │   ├── Pods_Runner-all-target-headers.hmap
+│   │   │   │   │       │   ├── Pods_Runner-generated-files.hmap
+│   │   │   │   │       │   ├── Pods_Runner-own-target-headers.hmap
+│   │   │   │   │       │   ├── Pods_Runner-project-headers.hmap
+│   │   │   │   │       │   ├── Pods_Runner.hmap
+│   │   │   │   │       │   ├── all-product-headers.yaml
+│   │   │   │   │       │   └── module.modulemap
+│   │   │   │   │       ├── path_provider_foundation-path_provider_foundation_privacy.build
+│   │   │   │   │       │   ├── all-product-headers.yaml
+│   │   │   │   │       │   ├── path_provider_foundation_privacy-all-non-framework-target-headers.hmap
+│   │   │   │   │       │   ├── path_provider_foundation_privacy-all-target-headers.hmap
+│   │   │   │   │       │   ├── path_provider_foundation_privacy-generated-files.hmap
+│   │   │   │   │       │   ├── path_provider_foundation_privacy-own-target-headers.hmap
+│   │   │   │   │       │   ├── path_provider_foundation_privacy-project-headers.hmap
+│   │   │   │   │       │   └── path_provider_foundation_privacy.hmap
+│   │   │   │   │       └── path_provider_foundation.build
+│   │   │   │   │           ├── DerivedSources
+│   │   │   │   │           │   └── path_provider_foundation_vers.c
+│   │   │   │   │           ├── Objects-normal
+│   │   │   │   │           │   └── arm64
+│   │   │   │   │           │       ├── 7187679823f38a2a940e0043cdf9d637-common-args.resp
+│   │   │   │   │           │       ├── PathProviderPlugin.d
+│   │   │   │   │           │       ├── PathProviderPlugin.dia
+│   │   │   │   │           │       ├── PathProviderPlugin.o
+│   │   │   │   │           │       ├── PathProviderPlugin.swiftconstvalues
+│   │   │   │   │           │       ├── PathProviderPlugin.swiftdeps
+│   │   │   │   │           │       ├── e6072d4f65d7061329687fe24e3d63a7-common-args.resp
+│   │   │   │   │           │       ├── messages.g.d
+│   │   │   │   │           │       ├── messages.g.dia
+│   │   │   │   │           │       ├── messages.g.o
+│   │   │   │   │           │       ├── messages.g.swiftconstvalues
+│   │   │   │   │           │       ├── messages.g.swiftdeps
+│   │   │   │   │           │       ├── path_provider_foundation-OutputFileMap.json
+│   │   │   │   │           │       ├── path_provider_foundation-Swift.h
+│   │   │   │   │           │       ├── path_provider_foundation-dummy.d
+│   │   │   │   │           │       ├── path_provider_foundation-dummy.dia
+│   │   │   │   │           │       ├── path_provider_foundation-dummy.o
+│   │   │   │   │           │       ├── path_provider_foundation-master-emit-module.d
+│   │   │   │   │           │       ├── path_provider_foundation-master-emit-module.dia
+│   │   │   │   │           │       ├── path_provider_foundation-master.priors
+│   │   │   │   │           │       ├── path_provider_foundation.LinkFileList
+│   │   │   │   │           │       ├── path_provider_foundation.SwiftConstValuesFileList
+│   │   │   │   │           │       ├── path_provider_foundation.SwiftFileList
+│   │   │   │   │           │       ├── path_provider_foundation.abi.json
+│   │   │   │   │           │       ├── path_provider_foundation.swiftdoc
+│   │   │   │   │           │       ├── path_provider_foundation.swiftmodule
+│   │   │   │   │           │       ├── path_provider_foundation.swiftsourceinfo
+│   │   │   │   │           │       ├── path_provider_foundation_const_extract_protocols.json
+│   │   │   │   │           │       ├── path_provider_foundation_dependency_info.dat
+│   │   │   │   │           │       ├── path_provider_foundation_vers.d
+│   │   │   │   │           │       ├── path_provider_foundation_vers.dia
+│   │   │   │   │           │       └── path_provider_foundation_vers.o
+│   │   │   │   │           ├── all-product-headers.yaml
+│   │   │   │   │           ├── module.modulemap
+│   │   │   │   │           ├── path_provider_foundation-all-non-framework-target-headers.hmap
+│   │   │   │   │           ├── path_provider_foundation-all-target-headers.hmap
+│   │   │   │   │           ├── path_provider_foundation-generated-files.hmap
+│   │   │   │   │           ├── path_provider_foundation-own-target-headers.hmap
+│   │   │   │   │           ├── path_provider_foundation-project-headers.hmap
+│   │   │   │   │           ├── path_provider_foundation.hmap
+│   │   │   │   │           ├── unextended-module-overlay.yaml
+│   │   │   │   │           └── unextended-module.modulemap
+│   │   │   │   ├── Runner.build
+│   │   │   │   │   └── Debug
+│   │   │   │   │       └── Flutter Assemble.build
+│   │   │   │   │           ├── InputFileList-33CC111E2044C6BF0003C045-FlutterInputs-71dbf3ae38674cb01baa771d840b6fac-resolved.xcfilelist
+│   │   │   │   │           ├── OutputFileList-33CC111E2044C6BF0003C045-FlutterOutputs-ad9149acfcb43db19924ba16d96a8b76-resolved.xcfilelist
+│   │   │   │   │           └── Script-33CC111E2044C6BF0003C045.sh
+│   │   │   │   └── XCBuildData
+│   │   │   │       ├── 3c392298d68b875f2364b3547790d6ad.xcbuilddata
+│   │   │   │       │   ├── attachments
+│   │   │   │       │   │   ├── 026d460063b27a5bf17e3e3bae04158d
+│   │   │   │       │   │   ├── 044a6fdfc02bdd648746cfaa9bf526af
+│   │   │   │       │   │   ├── 06bce5fcdded62a7b3bb5d62a94e5dcb
+│   │   │   │       │   │   ├── 0af873383d67bb39d9b9901fdaf88d62
+│   │   │   │       │   │   ├── 0e21aab778f18e2150f3c4b43cdd0708
+│   │   │   │       │   │   ├── 198288aeb4973ca4a91ad54ed9ac704b
+│   │   │   │       │   │   ├── 1b7ac61b8ecc62c8e69b213f182eca6b
+│   │   │   │       │   │   ├── 1d25fcc22f15e5a23b7835736aaf8c47
+│   │   │   │       │   │   ├── 25cf8e242b464b2cb83683619f16b92c
+│   │   │   │       │   │   ├── 3d4c34754d6a1f1413027452147d9851
+│   │   │   │       │   │   ├── 4a4d8b323fb25206fc5fb1b1de712166
+│   │   │   │       │   │   ├── 55837f74016b9ebf28d156b85b6729e1
+│   │   │   │       │   │   ├── 58dde135391acd35345aa0cc1ab59207
+│   │   │   │       │   │   ├── 667434804d15aa0bc2f4d7c9527ceeb0
+│   │   │   │       │   │   ├── 67e76468a8cd78f03ef5535f8fd0ab00
+│   │   │   │       │   │   ├── 718fbd2a82731b833457e97f223834db
+│   │   │   │       │   │   ├── 77856227938b79361e1401b58101905f
+│   │   │   │       │   │   ├── 801899659fec00e6592417aa7f2c2750
+│   │   │   │       │   │   ├── 80bf1cf47f081593e00d4dbd37649198
+│   │   │   │       │   │   ├── 8bba4233626f64a7ea772bb94a08a1a9
+│   │   │   │       │   │   ├── 937dc19f0b081b4c356ff24215ee622f
+│   │   │   │       │   │   ├── 93abdfcf9e0ce83d1a53b04cd763d01c
+│   │   │   │       │   │   ├── 9dfa39808b458c4e5cab439e814baaeb
+│   │   │   │       │   │   ├── a05ad56f2d12b901b657101c1a48251f
+│   │   │   │       │   │   ├── a0fb93d1fe66be2e81400941d25c32eb
+│   │   │   │       │   │   ├── a6232a079f91648998ecf64d6c0c15ad
+│   │   │   │       │   │   ├── acf77db03d95593ee57f2ef5b6ec2391
+│   │   │   │       │   │   ├── ad6a8c72e41947a5e1ff1f0f7dfe8978
+│   │   │   │       │   │   ├── b5c347a1c14733177577aaf3a8bce392
+│   │   │   │       │   │   ├── bb94fc515189b00485bc317eaf2afb41
+│   │   │   │       │   │   ├── bdb5cf9dd3f47d2185e36510142629c1
+│   │   │   │       │   │   ├── c392bc393771e63cec9460e38cb222ce
+│   │   │   │       │   │   ├── c9f70e334ed49d4089d4c6b0b655f71c
+│   │   │   │       │   │   ├── d0394cdbc41868755a51ba382c15fd75
+│   │   │   │       │   │   ├── d41d8cd98f00b204e9800998ecf8427e
+│   │   │   │       │   │   ├── daf535d4e93da012ac017394915d30f2
+│   │   │   │       │   │   ├── dd1658b7275676660fb466feae65cfe1
+│   │   │   │       │   │   ├── e018b25393afb0789ca5294651e2966f
+│   │   │   │       │   │   ├── e14137bbeb31385d359fc4d4101b6dde
+│   │   │   │       │   │   ├── e3cb4ecacac21fa8f55037e61e0050ad
+│   │   │   │       │   │   ├── f5d172abf378c91f4441882ee142aee0
+│   │   │   │       │   │   ├── fa17059944b8ce3b9cbb72e04bf736ea
+│   │   │   │       │   │   └── fd8314defc70a8778956f026c0ddfd19
+│   │   │   │       │   ├── build-request.json
+│   │   │   │       │   ├── description.msgpack
+│   │   │   │       │   ├── manifest.json
+│   │   │   │       │   ├── target-graph.txt
+│   │   │   │       │   └── task-store.msgpack
+│   │   │   │       ├── PIFCache
+│   │   │   │       │   ├── project
+│   │   │   │       │   │   ├── PROJECT@v11_mod=1765465062.393753_hash=8699adb1dd336b26511df848a716bd42plugins=1OJSG6M1FOV3XYQCBH7Z29RZ0FPR9XDE1-json
+│   │   │   │       │   │   └── PROJECT@v11_mod=1765465062.4070768_hash=18c1723432283e0cc55f10a6dcfd9e02plugins=1OJSG6M1FOV3XYQCBH7Z29RZ0FPR9XDE1-json
+│   │   │   │       │   ├── target
+│   │   │   │       │   │   ├── TARGET@v11_hash=076d9d96f7df02c193b4c619b3a33a53-json
+│   │   │   │       │   │   ├── TARGET@v11_hash=2cc4afeea27886b529cd8233dfa729eb-json
+│   │   │   │       │   │   ├── TARGET@v11_hash=3bdf318f0cdc2f951095b0067abb4ee8-json
+│   │   │   │       │   │   ├── TARGET@v11_hash=3cde4392f5e6e241e4cdd7cb244fa718-json
+│   │   │   │       │   │   ├── TARGET@v11_hash=77029582540d85085ee4b8b0dc4615ca-json
+│   │   │   │       │   │   ├── TARGET@v11_hash=92f52eb5ea041910c28ee6edd2f169ca-json
+│   │   │   │       │   │   ├── TARGET@v11_hash=ae8e777923fb91324939a7378b9c75e1-json
+│   │   │   │       │   │   └── TARGET@v11_hash=ce4f81d895ca255bee5b7f81302d1153-json
+│   │   │   │       │   └── workspace
+│   │   │   │       │       └── WORKSPACE@v11_hash=682d3848fc4ee5176d1ad95bf017b6d0_subobjects=32fda4aee5a18d94ca9ecb74a9472724-json
+│   │   │   │       └── build.db
+│   │   │   └── Products
+│   │   │       └── Debug
+│   │   │           ├── FlutterMacOS
+│   │   │           ├── FlutterMacOS.framework
+│   │   │           │   ├── FlutterMacOS -> Versions/Current/FlutterMacOS
+│   │   │           │   ├── Headers -> Versions/Current/Headers
+│   │   │           │   ├── Modules -> Versions/Current/Modules
+│   │   │           │   ├── Resources -> Versions/Current/Resources
+│   │   │           │   └── Versions
+│   │   │           │       ├── A
+│   │   │           │       │   ├── FlutterMacOS
+│   │   │           │       │   ├── Headers
+│   │   │           │       │   │   ├── FlutterAppDelegate.h
+│   │   │           │       │   │   ├── FlutterAppLifecycleDelegate.h
+│   │   │           │       │   │   ├── FlutterBinaryMessenger.h
+│   │   │           │       │   │   ├── FlutterChannels.h
+│   │   │           │       │   │   ├── FlutterCodecs.h
+│   │   │           │       │   │   ├── FlutterDartProject.h
+│   │   │           │       │   │   ├── FlutterEngine.h
+│   │   │           │       │   │   ├── FlutterHourFormat.h
+│   │   │           │       │   │   ├── FlutterMacOS.h
+│   │   │           │       │   │   ├── FlutterMacros.h
+│   │   │           │       │   │   ├── FlutterPlatformViews.h
+│   │   │           │       │   │   ├── FlutterPluginMacOS.h
+│   │   │           │       │   │   ├── FlutterPluginRegistrarMacOS.h
+│   │   │           │       │   │   ├── FlutterTexture.h
+│   │   │           │       │   │   └── FlutterViewController.h
+│   │   │           │       │   ├── Modules
+│   │   │           │       │   │   └── module.modulemap
+│   │   │           │       │   ├── Resources
+│   │   │           │       │   │   ├── Info.plist
+│   │   │           │       │   │   ├── PrivacyInfo.xcprivacy
+│   │   │           │       │   │   └── icudtl.dat
+│   │   │           │       │   └── _CodeSignature
+│   │   │           │       │       └── CodeResources
+│   │   │           │       └── Current -> A
+│   │   │           ├── Pods_Runner.framework
+│   │   │           │   ├── Headers -> Versions/Current/Headers
+│   │   │           │   ├── Modules -> Versions/Current/Modules
+│   │   │           │   ├── Pods_Runner -> Versions/Current/Pods_Runner
+│   │   │           │   ├── Resources -> Versions/Current/Resources
+│   │   │           │   └── Versions
+│   │   │           │       ├── A
+│   │   │           │       │   ├── Headers
+│   │   │           │       │   │   └── Pods-Runner-umbrella.h
+│   │   │           │       │   ├── Modules
+│   │   │           │       │   │   └── module.modulemap
+│   │   │           │       │   ├── Pods_Runner
+│   │   │           │       │   └── Resources
+│   │   │           │       │       └── Info.plist
+│   │   │           │       └── Current -> A
+│   │   │           ├── path_provider_foundation
+│   │   │           │   ├── path_provider_foundation.framework
+│   │   │           │   │   ├── Headers -> Versions/Current/Headers
+│   │   │           │   │   ├── Modules -> Versions/Current/Modules
+│   │   │           │   │   ├── Resources -> Versions/Current/Resources
+│   │   │           │   │   ├── Versions
+│   │   │           │   │   │   ├── A
+│   │   │           │   │   │   │   ├── Headers
+│   │   │           │   │   │   │   │   ├── path_provider_foundation-Swift.h
+│   │   │           │   │   │   │   │   └── path_provider_foundation-umbrella.h
+│   │   │           │   │   │   │   ├── Modules
+│   │   │           │   │   │   │   │   ├── module.modulemap
+│   │   │           │   │   │   │   │   └── path_provider_foundation.swiftmodule
+│   │   │           │   │   │   │   │       ├── Project
+│   │   │           │   │   │   │   │       │   └── arm64-apple-macos.swiftsourceinfo
+│   │   │           │   │   │   │   │       ├── arm64-apple-macos.abi.json
+│   │   │           │   │   │   │   │       ├── arm64-apple-macos.swiftdoc
+│   │   │           │   │   │   │   │       └── arm64-apple-macos.swiftmodule
+│   │   │           │   │   │   │   ├── Resources
+│   │   │           │   │   │   │   │   ├── Info.plist
+│   │   │           │   │   │   │   │   └── path_provider_foundation_privacy.bundle
+│   │   │           │   │   │   │   │       └── Contents
+│   │   │           │   │   │   │   │           ├── Info.plist
+│   │   │           │   │   │   │   │           └── Resources
+│   │   │           │   │   │   │   │               └── PrivacyInfo.xcprivacy
+│   │   │           │   │   │   │   └── path_provider_foundation
+│   │   │           │   │   │   └── Current -> A
+│   │   │           │   │   └── path_provider_foundation -> Versions/Current/path_provider_foundation
+│   │   │           │   └── path_provider_foundation_privacy.bundle
+│   │   │           │       └── Contents
+│   │   │           │           ├── Info.plist
+│   │   │           │           └── Resources
+│   │   │           │               └── PrivacyInfo.xcprivacy
+│   │   │           └── vault_01.app
+│   │   │               └── Contents
+│   │   │                   ├── Frameworks
+│   │   │                   ├── MacOS
+│   │   │                   └── Resources
+│   │   ├── Logs
+│   │   │   ├── Build
+│   │   │   │   ├── 35B9CD3A-6D79-42BE-8A0B-30D3E6E01F54.xcactivitylog
+│   │   │   │   └── LogStoreManifest.plist
+│   │   │   ├── Launch
+│   │   │   │   └── LogStoreManifest.plist
+│   │   │   ├── Localization
+│   │   │   │   └── LogStoreManifest.plist
+│   │   │   ├── Package
+│   │   │   │   └── LogStoreManifest.plist
+│   │   │   └── Test
+│   │   │       └── LogStoreManifest.plist
+│   │   ├── ModuleCache.noindex
+│   │   │   ├── 2PM5WUB93M2OW
+│   │   │   │   ├── Accessibility-1C39AWPZ3ZCHS.pcm
+│   │   │   │   ├── Accessibility-1C39AWPZ3ZCHS.pcm.timestamp
+│   │   │   │   ├── AppKit-2E52K8BLPXB98.pcm
+│   │   │   │   ├── AppKit-2E52K8BLPXB98.pcm.timestamp
+│   │   │   │   ├── ApplicationServices-318ED6HVOOOWK.pcm
+│   │   │   │   ├── ApplicationServices-318ED6HVOOOWK.pcm.timestamp
+│   │   │   │   ├── CFNetwork-2QM24TU1OUNU.pcm
+│   │   │   │   ├── CFNetwork-2QM24TU1OUNU.pcm.timestamp
+│   │   │   │   ├── CUPS-JHNNNXXF1OP5.pcm
+│   │   │   │   ├── CUPS-JHNNNXXF1OP5.pcm.timestamp
+│   │   │   │   ├── Cocoa-G0K7USNOMP8I.pcm
+│   │   │   │   ├── Cocoa-G0K7USNOMP8I.pcm.timestamp
+│   │   │   │   ├── ColorSync-FUKP4SF5WDN.pcm
+│   │   │   │   ├── ColorSync-FUKP4SF5WDN.pcm.timestamp
+│   │   │   │   ├── CoreAudio-1AA2PF9D9ZR1E.pcm
+│   │   │   │   ├── CoreAudio-1AA2PF9D9ZR1E.pcm.timestamp
+│   │   │   │   ├── CoreAudioTypes-FBCZNCTK6GB0.pcm
+│   │   │   │   ├── CoreAudioTypes-FBCZNCTK6GB0.pcm.timestamp
+│   │   │   │   ├── CoreData-3DC7JJOJKG7MT.pcm
+│   │   │   │   ├── CoreData-3DC7JJOJKG7MT.pcm.timestamp
+│   │   │   │   ├── CoreFoundation-XRVNUAOWDGXL.pcm
+│   │   │   │   ├── CoreFoundation-XRVNUAOWDGXL.pcm.timestamp
+│   │   │   │   ├── CoreGraphics-3T9VBW5GP5OQV.pcm
+│   │   │   │   ├── CoreGraphics-3T9VBW5GP5OQV.pcm.timestamp
+│   │   │   │   ├── CoreImage-2CUH609RP6X7P.pcm
+│   │   │   │   ├── CoreImage-2CUH609RP6X7P.pcm.timestamp
+│   │   │   │   ├── CoreMedia-37PVQTJTN9KQQ.pcm
+│   │   │   │   ├── CoreMedia-37PVQTJTN9KQQ.pcm.timestamp
+│   │   │   │   ├── CoreServices-3FK4JMT7K1IRE.pcm
+│   │   │   │   ├── CoreServices-3FK4JMT7K1IRE.pcm.timestamp
+│   │   │   │   ├── CoreText-2K5RVIO1QZLNS.pcm
+│   │   │   │   ├── CoreText-2K5RVIO1QZLNS.pcm.timestamp
+│   │   │   │   ├── CoreTransferable-KM8905ZS9D06.pcm
+│   │   │   │   ├── CoreTransferable-KM8905ZS9D06.pcm.timestamp
+│   │   │   │   ├── CoreVideo-1EDP4WMD3WVWL.pcm
+│   │   │   │   ├── CoreVideo-1EDP4WMD3WVWL.pcm.timestamp
+│   │   │   │   ├── Darwin-14TRD15FCACV2.pcm
+│   │   │   │   ├── Darwin-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── DeveloperToolsSupport-3H6S1A3Z3FZ2K.pcm
+│   │   │   │   ├── DeveloperToolsSupport-3H6S1A3Z3FZ2K.pcm.timestamp
+│   │   │   │   ├── DiskArbitration-QK5Z60WO3GCK.pcm
+│   │   │   │   ├── DiskArbitration-QK5Z60WO3GCK.pcm.timestamp
+│   │   │   │   ├── Dispatch-Y4ZZ1HR72FEI.pcm
+│   │   │   │   ├── Dispatch-Y4ZZ1HR72FEI.pcm.timestamp
+│   │   │   │   ├── FlutterMacOS-2FREQQODOWHOT.pcm
+│   │   │   │   ├── FlutterMacOS-2FREQQODOWHOT.pcm.timestamp
+│   │   │   │   ├── Foundation-2M8Y3D1H909LB.pcm
+│   │   │   │   ├── Foundation-2M8Y3D1H909LB.pcm.timestamp
+│   │   │   │   ├── IOKit-1YJU4L4Q03Y5.pcm
+│   │   │   │   ├── IOKit-1YJU4L4Q03Y5.pcm.timestamp
+│   │   │   │   ├── IOSurface-235Q4H9R8GAYU.pcm
+│   │   │   │   ├── IOSurface-235Q4H9R8GAYU.pcm.timestamp
+│   │   │   │   ├── ImageIO-27XM1J7FM4Q7H.pcm
+│   │   │   │   ├── ImageIO-27XM1J7FM4Q7H.pcm.timestamp
+│   │   │   │   ├── MachO-YWFNV22Z5VUT.pcm
+│   │   │   │   ├── MachO-YWFNV22Z5VUT.pcm.timestamp
+│   │   │   │   ├── Metal-1B038G1N9AC0V.pcm
+│   │   │   │   ├── Metal-1B038G1N9AC0V.pcm.timestamp
+│   │   │   │   ├── ObjectiveC-2C4A7FIGEFV6M.pcm
+│   │   │   │   ├── ObjectiveC-2C4A7FIGEFV6M.pcm.timestamp
+│   │   │   │   ├── OpenGL-2YY2N6L4YVU9Y.pcm
+│   │   │   │   ├── OpenGL-2YY2N6L4YVU9Y.pcm.timestamp
+│   │   │   │   ├── QuartzCore-KO6TAZ9XHBR8.pcm
+│   │   │   │   ├── QuartzCore-KO6TAZ9XHBR8.pcm.timestamp
+│   │   │   │   ├── Security-3MRSRYU7H638B.pcm
+│   │   │   │   ├── Security-3MRSRYU7H638B.pcm.timestamp
+│   │   │   │   ├── SwiftOverlayShims-39ZO3A1THQ3HL.pcm
+│   │   │   │   ├── SwiftOverlayShims-39ZO3A1THQ3HL.pcm.timestamp
+│   │   │   │   ├── SwiftShims-39ZO3A1THQ3HL.pcm
+│   │   │   │   ├── SwiftShims-39ZO3A1THQ3HL.pcm.timestamp
+│   │   │   │   ├── Symbols-1QNIPN3XYP8LO.pcm
+│   │   │   │   ├── Symbols-1QNIPN3XYP8LO.pcm.timestamp
+│   │   │   │   ├── UniformTypeIdentifiers-2TQCH09YI5T7Y.pcm
+│   │   │   │   ├── UniformTypeIdentifiers-2TQCH09YI5T7Y.pcm.timestamp
+│   │   │   │   ├── XPC-1O6EQOTZ7QBYA.pcm
+│   │   │   │   ├── XPC-1O6EQOTZ7QBYA.pcm.timestamp
+│   │   │   │   ├── _Builtin_stddef_max_align_t-25OOTM0E7SZ3X.pcm
+│   │   │   │   ├── _Builtin_stddef_max_align_t-25OOTM0E7SZ3X.pcm.timestamp
+│   │   │   │   ├── _SwiftConcurrencyShims-39ZO3A1THQ3HL.pcm
+│   │   │   │   ├── _SwiftConcurrencyShims-39ZO3A1THQ3HL.pcm.timestamp
+│   │   │   │   ├── launch-ZN5YPD9YCD97.pcm
+│   │   │   │   ├── launch-ZN5YPD9YCD97.pcm.timestamp
+│   │   │   │   ├── libDER-2YDAHEQ2C7FF0.pcm
+│   │   │   │   ├── libDER-2YDAHEQ2C7FF0.pcm.timestamp
+│   │   │   │   ├── libkern-14TRD15FCACV2.pcm
+│   │   │   │   ├── libkern-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── os-14TRD15FCACV2.pcm
+│   │   │   │   ├── os-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── os_object-14TRD15FCACV2.pcm
+│   │   │   │   ├── os_object-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── os_workgroup-14TRD15FCACV2.pcm
+│   │   │   │   ├── os_workgroup-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── path_provider_foundation-3ST0GZ3NONT1Z.pcm
+│   │   │   │   ├── path_provider_foundation-3ST0GZ3NONT1Z.pcm.timestamp
+│   │   │   │   ├── ptrauth-25OOTM0E7SZ3X.pcm
+│   │   │   │   └── ptrauth-25OOTM0E7SZ3X.pcm.timestamp
+│   │   │   ├── 3W0IUX3N75Q3E
+│   │   │   │   ├── AppKit-2E52K8BLPXB98.pcm
+│   │   │   │   ├── AppKit-2E52K8BLPXB98.pcm.timestamp
+│   │   │   │   ├── ApplicationServices-318ED6HVOOOWK.pcm
+│   │   │   │   ├── ApplicationServices-318ED6HVOOOWK.pcm.timestamp
+│   │   │   │   ├── CFNetwork-2QM24TU1OUNU.pcm
+│   │   │   │   ├── CFNetwork-2QM24TU1OUNU.pcm.timestamp
+│   │   │   │   ├── CUPS-JHNNNXXF1OP5.pcm
+│   │   │   │   ├── CUPS-JHNNNXXF1OP5.pcm.timestamp
+│   │   │   │   ├── CloudKit-1VNHZFXVZSMOJ.pcm
+│   │   │   │   ├── CloudKit-1VNHZFXVZSMOJ.pcm.timestamp
+│   │   │   │   ├── Cocoa-G0K7USNOMP8I.pcm
+│   │   │   │   ├── Cocoa-G0K7USNOMP8I.pcm.timestamp
+│   │   │   │   ├── ColorSync-FUKP4SF5WDN.pcm
+│   │   │   │   ├── ColorSync-FUKP4SF5WDN.pcm.timestamp
+│   │   │   │   ├── CoreData-3DC7JJOJKG7MT.pcm
+│   │   │   │   ├── CoreData-3DC7JJOJKG7MT.pcm.timestamp
+│   │   │   │   ├── CoreFoundation-XRVNUAOWDGXL.pcm
+│   │   │   │   ├── CoreFoundation-XRVNUAOWDGXL.pcm.timestamp
+│   │   │   │   ├── CoreGraphics-3T9VBW5GP5OQV.pcm
+│   │   │   │   ├── CoreGraphics-3T9VBW5GP5OQV.pcm.timestamp
+│   │   │   │   ├── CoreImage-2CUH609RP6X7P.pcm
+│   │   │   │   ├── CoreImage-2CUH609RP6X7P.pcm.timestamp
+│   │   │   │   ├── CoreLocation-15LS9NBI4V3VN.pcm
+│   │   │   │   ├── CoreLocation-15LS9NBI4V3VN.pcm.timestamp
+│   │   │   │   ├── CoreServices-3FK4JMT7K1IRE.pcm
+│   │   │   │   ├── CoreServices-3FK4JMT7K1IRE.pcm.timestamp
+│   │   │   │   ├── CoreText-2K5RVIO1QZLNS.pcm
+│   │   │   │   ├── CoreText-2K5RVIO1QZLNS.pcm.timestamp
+│   │   │   │   ├── CoreVideo-1EDP4WMD3WVWL.pcm
+│   │   │   │   ├── CoreVideo-1EDP4WMD3WVWL.pcm.timestamp
+│   │   │   │   ├── Darwin-14TRD15FCACV2.pcm
+│   │   │   │   ├── Darwin-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── DiskArbitration-QK5Z60WO3GCK.pcm
+│   │   │   │   ├── DiskArbitration-QK5Z60WO3GCK.pcm.timestamp
+│   │   │   │   ├── Dispatch-Y4ZZ1HR72FEI.pcm
+│   │   │   │   ├── Dispatch-Y4ZZ1HR72FEI.pcm.timestamp
+│   │   │   │   ├── Foundation-2M8Y3D1H909LB.pcm
+│   │   │   │   ├── Foundation-2M8Y3D1H909LB.pcm.timestamp
+│   │   │   │   ├── IOKit-1YJU4L4Q03Y5.pcm
+│   │   │   │   ├── IOKit-1YJU4L4Q03Y5.pcm.timestamp
+│   │   │   │   ├── IOSurface-235Q4H9R8GAYU.pcm
+│   │   │   │   ├── IOSurface-235Q4H9R8GAYU.pcm.timestamp
+│   │   │   │   ├── ImageIO-27XM1J7FM4Q7H.pcm
+│   │   │   │   ├── ImageIO-27XM1J7FM4Q7H.pcm.timestamp
+│   │   │   │   ├── MachO-YWFNV22Z5VUT.pcm
+│   │   │   │   ├── MachO-YWFNV22Z5VUT.pcm.timestamp
+│   │   │   │   ├── Metal-1B038G1N9AC0V.pcm
+│   │   │   │   ├── Metal-1B038G1N9AC0V.pcm.timestamp
+│   │   │   │   ├── ObjectiveC-2C4A7FIGEFV6M.pcm
+│   │   │   │   ├── ObjectiveC-2C4A7FIGEFV6M.pcm.timestamp
+│   │   │   │   ├── OpenGL-2YY2N6L4YVU9Y.pcm
+│   │   │   │   ├── OpenGL-2YY2N6L4YVU9Y.pcm.timestamp
+│   │   │   │   ├── QuartzCore-KO6TAZ9XHBR8.pcm
+│   │   │   │   ├── QuartzCore-KO6TAZ9XHBR8.pcm.timestamp
+│   │   │   │   ├── Security-3MRSRYU7H638B.pcm
+│   │   │   │   ├── Security-3MRSRYU7H638B.pcm.timestamp
+│   │   │   │   ├── Symbols-1QNIPN3XYP8LO.pcm
+│   │   │   │   ├── Symbols-1QNIPN3XYP8LO.pcm.timestamp
+│   │   │   │   ├── XPC-1O6EQOTZ7QBYA.pcm
+│   │   │   │   ├── XPC-1O6EQOTZ7QBYA.pcm.timestamp
+│   │   │   │   ├── _Builtin_stddef_max_align_t-25OOTM0E7SZ3X.pcm
+│   │   │   │   ├── _Builtin_stddef_max_align_t-25OOTM0E7SZ3X.pcm.timestamp
+│   │   │   │   ├── launch-ZN5YPD9YCD97.pcm
+│   │   │   │   ├── launch-ZN5YPD9YCD97.pcm.timestamp
+│   │   │   │   ├── libDER-2YDAHEQ2C7FF0.pcm
+│   │   │   │   ├── libDER-2YDAHEQ2C7FF0.pcm.timestamp
+│   │   │   │   ├── libkern-14TRD15FCACV2.pcm
+│   │   │   │   ├── libkern-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── modules.idx
+│   │   │   │   ├── os_object-14TRD15FCACV2.pcm
+│   │   │   │   ├── os_object-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── os_workgroup-14TRD15FCACV2.pcm
+│   │   │   │   ├── os_workgroup-14TRD15FCACV2.pcm.timestamp
+│   │   │   │   ├── ptrauth-25OOTM0E7SZ3X.pcm
+│   │   │   │   └── ptrauth-25OOTM0E7SZ3X.pcm.timestamp
+│   │   │   ├── Accessibility-2V4YPPUN73PSL.swiftmodule
+│   │   │   ├── AppKit-A3ZUBX31M3JZ.swiftmodule
+│   │   │   ├── Combine-15ZO5ZKQM8TBT.swiftmodule
+│   │   │   ├── CoreAudio-1YRUJEZFBCO3E.swiftmodule
+│   │   │   ├── CoreData-1AVEUTOEOPN6R.swiftmodule
+│   │   │   ├── CoreFoundation-39DUWGAXY1308.swiftmodule
+│   │   │   ├── CoreGraphics-WWBOYK58D6WT.swiftmodule
+│   │   │   ├── CoreImage-3J0N5MIBYMJMF.swiftmodule
+│   │   │   ├── CoreMedia-171N14TKYZ06.swiftmodule
+│   │   │   ├── CoreTransferable-EZ78DJ9IPSD3.swiftmodule
+│   │   │   ├── Darwin-11LQITM9TD885.swiftmodule
+│   │   │   ├── DeveloperToolsSupport-ORYJ4UGCNJRM.swiftmodule
+│   │   │   ├── Dispatch-SEWHC6VO9TMO.swiftmodule
+│   │   │   ├── Foundation-2FOCD0OLK5DFK.swiftmodule
+│   │   │   ├── IOKit-3PGF9Y6NIQUNC.swiftmodule
+│   │   │   ├── Metal-UT6FDBY1JGLP.swiftmodule
+│   │   │   ├── ObjectiveC-23YOVMCLMRVLD.swiftmodule
+│   │   │   ├── Observation-2XYFK52UGU8R7.swiftmodule
+│   │   │   ├── QuartzCore-2LTA66I79L6EV.swiftmodule
+│   │   │   ├── Session.modulevalidation
+│   │   │   ├── Swift-3QIFT6LHSLSXN.swiftmodule
+│   │   │   ├── SwiftOnoneSupport-3VXPM5QSJ9KZY.swiftmodule
+│   │   │   ├── Symbols-3O1UPMP14L4L7.swiftmodule
+│   │   │   ├── UniformTypeIdentifiers-1RIRM3M89KZBS.swiftmodule
+│   │   │   ├── XPC-1PQNASNRVQLMT.swiftmodule
+│   │   │   ├── _Concurrency-22PCT9WK9OWDN.swiftmodule
+│   │   │   ├── _StringProcessing-3A1W7CALWUB5F.swiftmodule
+│   │   │   ├── modules.timestamp
+│   │   │   └── os-YX42H0I65EB5.swiftmodule
+│   │   ├── SDKStatCaches.noindex
+│   │   │   └── macosx14.5-23F73-7e3fd6dc4171e65dbd154ba8db3956d2.sdkstatcache
+│   │   ├── info.plist
+│   │   └── pod_inputs.fingerprint
+│   └── native_assets
+│       └── macos
+├── directory_structure.txt
+├── flutter_rust_bridge.yaml
+├── integration_test
+│   └── simple_test.dart
+├── ios
+│   ├── Flutter
+│   │   ├── AppFrameworkInfo.plist
+│   │   ├── Debug.xcconfig
+│   │   ├── Generated.xcconfig
+│   │   ├── Release.xcconfig
+│   │   ├── ephemeral
+│   │   │   ├── flutter_lldb_helper.py
+│   │   │   └── flutter_lldbinit
+│   │   └── flutter_export_environment.sh
+│   ├── Podfile
+│   ├── Podfile.lock
+│   ├── Pods
+│   │   ├── Headers
+│   │   ├── Local Podspecs
+│   │   │   ├── Flutter.podspec.json
+│   │   │   ├── integration_test.podspec.json
+│   │   │   ├── path_provider_foundation.podspec.json
+│   │   │   └── rust_lib_vault_01.podspec.json
+│   │   ├── Pods.xcodeproj
+│   │   │   ├── project.pbxproj
+│   │   │   └── xcuserdata
+│   │   │       └── kushalgowdacm.xcuserdatad
+│   │   │           └── xcschemes
+│   │   │               ├── Flutter.xcscheme
+│   │   │               ├── Pods-Runner.xcscheme
+│   │   │               ├── Pods-RunnerTests.xcscheme
+│   │   │               ├── integration_test.xcscheme
+│   │   │               ├── path_provider_foundation-path_provider_foundation_privacy.xcscheme
+│   │   │               ├── path_provider_foundation.xcscheme
+│   │   │               ├── rust_lib_vault_01.xcscheme
+│   │   │               └── xcschememanagement.plist
+│   │   └── Target Support Files
+│   │       ├── Flutter
+│   │       │   ├── Flutter.debug.xcconfig
+│   │       │   └── Flutter.release.xcconfig
+│   │       ├── Pods-Runner
+│   │       │   ├── Pods-Runner-Info.plist
+│   │       │   ├── Pods-Runner-acknowledgements.markdown
+│   │       │   ├── Pods-Runner-acknowledgements.plist
+│   │       │   ├── Pods-Runner-dummy.m
+│   │       │   ├── Pods-Runner-frameworks-Debug-input-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Debug-output-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Profile-input-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Profile-output-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Release-input-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Release-output-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks.sh
+│   │       │   ├── Pods-Runner-umbrella.h
+│   │       │   ├── Pods-Runner.debug.xcconfig
+│   │       │   ├── Pods-Runner.modulemap
+│   │       │   ├── Pods-Runner.profile.xcconfig
+│   │       │   └── Pods-Runner.release.xcconfig
+│   │       ├── Pods-RunnerTests
+│   │       │   ├── Pods-RunnerTests-Info.plist
+│   │       │   ├── Pods-RunnerTests-acknowledgements.markdown
+│   │       │   ├── Pods-RunnerTests-acknowledgements.plist
+│   │       │   ├── Pods-RunnerTests-dummy.m
+│   │       │   ├── Pods-RunnerTests-umbrella.h
+│   │       │   ├── Pods-RunnerTests.debug.xcconfig
+│   │       │   ├── Pods-RunnerTests.modulemap
+│   │       │   ├── Pods-RunnerTests.profile.xcconfig
+│   │       │   └── Pods-RunnerTests.release.xcconfig
+│   │       ├── integration_test
+│   │       │   ├── integration_test-Info.plist
+│   │       │   ├── integration_test-dummy.m
+│   │       │   ├── integration_test-prefix.pch
+│   │       │   ├── integration_test-umbrella.h
+│   │       │   ├── integration_test.debug.xcconfig
+│   │       │   ├── integration_test.modulemap
+│   │       │   └── integration_test.release.xcconfig
+│   │       ├── path_provider_foundation
+│   │       │   ├── ResourceBundle-path_provider_foundation_privacy-path_provider_foundation-Info.plist
+│   │       │   ├── path_provider_foundation-Info.plist
+│   │       │   ├── path_provider_foundation-dummy.m
+│   │       │   ├── path_provider_foundation-prefix.pch
+│   │       │   ├── path_provider_foundation-umbrella.h
+│   │       │   ├── path_provider_foundation.debug.xcconfig
+│   │       │   ├── path_provider_foundation.modulemap
+│   │       │   └── path_provider_foundation.release.xcconfig
+│   │       └── rust_lib_vault_01
+│   │           ├── rust_lib_vault_01-Info.plist
+│   │           ├── rust_lib_vault_01-dummy.m
+│   │           ├── rust_lib_vault_01-prefix.pch
+│   │           ├── rust_lib_vault_01-umbrella.h
+│   │           ├── rust_lib_vault_01.debug.xcconfig
+│   │           ├── rust_lib_vault_01.modulemap
+│   │           └── rust_lib_vault_01.release.xcconfig
+│   ├── Runner
+│   │   ├── AppDelegate.swift
+│   │   ├── Assets.xcassets
+│   │   │   ├── AppIcon.appiconset
+│   │   │   │   ├── Contents.json
+│   │   │   │   ├── Icon-App-1024x1024@1x.png
+│   │   │   │   ├── Icon-App-20x20@1x.png
+│   │   │   │   ├── Icon-App-20x20@2x.png
+│   │   │   │   ├── Icon-App-20x20@3x.png
+│   │   │   │   ├── Icon-App-29x29@1x.png
+│   │   │   │   ├── Icon-App-29x29@2x.png
+│   │   │   │   ├── Icon-App-29x29@3x.png
+│   │   │   │   ├── Icon-App-40x40@1x.png
+│   │   │   │   ├── Icon-App-40x40@2x.png
+│   │   │   │   ├── Icon-App-40x40@3x.png
+│   │   │   │   ├── Icon-App-60x60@2x.png
+│   │   │   │   ├── Icon-App-60x60@3x.png
+│   │   │   │   ├── Icon-App-76x76@1x.png
+│   │   │   │   ├── Icon-App-76x76@2x.png
+│   │   │   │   └── Icon-App-83.5x83.5@2x.png
+│   │   │   └── LaunchImage.imageset
+│   │   │       ├── Contents.json
+│   │   │       ├── LaunchImage.png
+│   │   │       ├── LaunchImage@2x.png
+│   │   │       ├── LaunchImage@3x.png
+│   │   │       └── README.md
+│   │   ├── Base.lproj
+│   │   │   ├── LaunchScreen.storyboard
+│   │   │   └── Main.storyboard
+│   │   ├── GeneratedPluginRegistrant.h
+│   │   ├── GeneratedPluginRegistrant.m
+│   │   ├── Info.plist
+│   │   └── Runner-Bridging-Header.h
+│   ├── Runner.xcodeproj
+│   │   ├── project.pbxproj
+│   │   ├── project.xcworkspace
+│   │   │   ├── contents.xcworkspacedata
+│   │   │   └── xcshareddata
+│   │   │       ├── IDEWorkspaceChecks.plist
+│   │   │       ├── WorkspaceSettings.xcsettings
+│   │   │       └── swiftpm
+│   │   │           └── configuration
+│   │   └── xcshareddata
+│   │       └── xcschemes
+│   │           └── Runner.xcscheme
+│   ├── Runner.xcworkspace
+│   │   ├── contents.xcworkspacedata
+│   │   └── xcshareddata
+│   │       ├── IDEWorkspaceChecks.plist
+│   │       ├── WorkspaceSettings.xcsettings
+│   │       └── swiftpm
+│   │           └── configuration
+│   └── RunnerTests
+│       └── RunnerTests.swift
+├── lib
+│   ├── main.dart
+│   ├── screens
+│   │   └── input_screen.dart
+│   ├── src
+│   │   ├── frb_generated
+│   │   │   ├── api
+│   │   │   │   └── simple.dart
+│   │   │   ├── frb_generated.dart
+│   │   │   ├── frb_generated.io.dart
+│   │   │   └── frb_generated.web.dart
+│   │   └── rust
+│   │       ├── api
+│   │       │   └── simple.dart
+│   │       ├── frb_generated.io.dart
+│   │       ├── frb_generated.web.dart
+│   │       └── vault_ffi.dart
+│   ├── theme
+│   │   └── app_theme.dart
+│   └── utils
+│       └── path_helpers.dart
+├── linux
+│   ├── CMakeLists.txt
+│   ├── flutter
+│   │   ├── CMakeLists.txt
+│   │   ├── ephemeral
+│   │   ├── generated_plugin_registrant.cc
+│   │   ├── generated_plugin_registrant.h
+│   │   └── generated_plugins.cmake
+│   └── runner
+│       ├── CMakeLists.txt
+│       ├── main.cc
+│       ├── my_application.cc
+│       └── my_application.h
+├── macos
+│   ├── Flutter
+│   │   ├── Flutter-Debug.xcconfig
+│   │   ├── Flutter-Release.xcconfig
+│   │   ├── GeneratedPluginRegistrant.swift
+│   │   └── ephemeral
+│   │       ├── Flutter-Generated.xcconfig
+│   │       ├── FlutterInputs.xcfilelist
+│   │       ├── FlutterMacOS.podspec
+│   │       ├── FlutterOutputs.xcfilelist
+│   │       └── flutter_export_environment.sh
+│   ├── Podfile
+│   ├── Podfile.lock
+│   ├── Pods
+│   │   ├── Headers
+│   │   ├── Local Podspecs
+│   │   │   ├── FlutterMacOS.podspec.json
+│   │   │   ├── path_provider_foundation.podspec.json
+│   │   │   └── rust_lib_vault_01.podspec.json
+│   │   ├── Manifest.lock
+│   │   ├── Pods.xcodeproj
+│   │   │   ├── project.pbxproj
+│   │   │   └── xcuserdata
+│   │   │       └── kushalgowdacm.xcuserdatad
+│   │   │           └── xcschemes
+│   │   │               ├── FlutterMacOS.xcscheme
+│   │   │               ├── Pods-Runner.xcscheme
+│   │   │               ├── Pods-RunnerTests.xcscheme
+│   │   │               ├── path_provider_foundation-path_provider_foundation_privacy.xcscheme
+│   │   │               ├── path_provider_foundation.xcscheme
+│   │   │               └── xcschememanagement.plist
+│   │   └── Target Support Files
+│   │       ├── FlutterMacOS
+│   │       │   ├── FlutterMacOS.debug.xcconfig
+│   │       │   └── FlutterMacOS.release.xcconfig
+│   │       ├── Pods-Runner
+│   │       │   ├── Pods-Runner-Info.plist
+│   │       │   ├── Pods-Runner-acknowledgements.markdown
+│   │       │   ├── Pods-Runner-acknowledgements.plist
+│   │       │   ├── Pods-Runner-dummy.m
+│   │       │   ├── Pods-Runner-frameworks-Debug-input-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Debug-output-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Profile-input-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Profile-output-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Release-input-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks-Release-output-files.xcfilelist
+│   │       │   ├── Pods-Runner-frameworks.sh
+│   │       │   ├── Pods-Runner-umbrella.h
+│   │       │   ├── Pods-Runner.debug.xcconfig
+│   │       │   ├── Pods-Runner.modulemap
+│   │       │   ├── Pods-Runner.profile.xcconfig
+│   │       │   └── Pods-Runner.release.xcconfig
+│   │       ├── Pods-RunnerTests
+│   │       │   ├── Pods-RunnerTests-Info.plist
+│   │       │   ├── Pods-RunnerTests-acknowledgements.markdown
+│   │       │   ├── Pods-RunnerTests-acknowledgements.plist
+│   │       │   ├── Pods-RunnerTests-dummy.m
+│   │       │   ├── Pods-RunnerTests-umbrella.h
+│   │       │   ├── Pods-RunnerTests.debug.xcconfig
+│   │       │   ├── Pods-RunnerTests.modulemap
+│   │       │   ├── Pods-RunnerTests.profile.xcconfig
+│   │       │   └── Pods-RunnerTests.release.xcconfig
+│   │       └── path_provider_foundation
+│   │           ├── ResourceBundle-path_provider_foundation_privacy-path_provider_foundation-Info.plist
+│   │           ├── path_provider_foundation-Info.plist
+│   │           ├── path_provider_foundation-dummy.m
+│   │           ├── path_provider_foundation-prefix.pch
+│   │           ├── path_provider_foundation-umbrella.h
+│   │           ├── path_provider_foundation.debug.xcconfig
+│   │           ├── path_provider_foundation.modulemap
+│   │           └── path_provider_foundation.release.xcconfig
+│   ├── Runner
+│   │   ├── AppDelegate.swift
+│   │   ├── Assets.xcassets
+│   │   │   └── AppIcon.appiconset
+│   │   │       ├── Contents.json
+│   │   │       ├── app_icon_1024.png
+│   │   │       ├── app_icon_128.png
+│   │   │       ├── app_icon_16.png
+│   │   │       ├── app_icon_256.png
+│   │   │       ├── app_icon_32.png
+│   │   │       ├── app_icon_512.png
+│   │   │       └── app_icon_64.png
+│   │   ├── Base.lproj
+│   │   │   └── MainMenu.xib
+│   │   ├── Configs
+│   │   │   ├── AppInfo.xcconfig
+│   │   │   ├── Debug.xcconfig
+│   │   │   ├── Release.xcconfig
+│   │   │   └── Warnings.xcconfig
+│   │   ├── DebugProfile.entitlements
+│   │   ├── Info.plist
+│   │   ├── MainFlutterWindow.swift
+│   │   └── Release.entitlements
+│   ├── Runner.xcodeproj
+│   │   ├── project.pbxproj
+│   │   ├── project.xcworkspace
+│   │   │   └── xcshareddata
+│   │   │       ├── IDEWorkspaceChecks.plist
+│   │   │       └── swiftpm
+│   │   │           └── configuration
+│   │   ├── xcshareddata
+│   │   │   └── xcschemes
+│   │   │       └── Runner.xcscheme
+│   │   └── xcuserdata
+│   │       └── kushalgowdacm.xcuserdatad
+│   │           └── xcschemes
+│   │               └── xcschememanagement.plist
+│   ├── Runner.xcworkspace
+│   │   ├── contents.xcworkspacedata
+│   │   ├── xcshareddata
+│   │   │   ├── IDEWorkspaceChecks.plist
+│   │   │   └── swiftpm
+│   │   │       └── configuration
+│   │   └── xcuserdata
+│   │       └── kushalgowdacm.xcuserdatad
+│   │           └── UserInterfaceState.xcuserstate
+│   └── RunnerTests
+│       └── RunnerTests.swift
+├── pubspec.lock
+├── pubspec.yaml
+├── rust
+│   ├── Cargo.lock
+│   ├── Cargo.toml
+│   ├── src
+│   │   ├── api
+│   │   │   ├── mod.rs
+│   │   │   └── simple.rs
+│   │   ├── database.rs
+│   │   ├── frb_generated.rs
+│   │   └── lib.rs
+│   └── target
+│       ├── CACHEDIR.TAG
+│       └── debug
+│           ├── build
+│           │   ├── ahash-324d0e0c4d9be00b
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-324d0e0c4d9be00b
+│           │   │   └── build_script_build-324d0e0c4d9be00b.d
+│           │   ├── ahash-351588911c0c1fb9
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── ahash-b03a33b281f9b1df
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── ahash-c46d1e8369f8b687
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-c46d1e8369f8b687
+│           │   │   └── build_script_build-c46d1e8369f8b687.d
+│           │   ├── anyhow-050737170890f646
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── anyhow-743bc6190fbf5b8b
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-743bc6190fbf5b8b
+│           │   │   └── build_script_build-743bc6190fbf5b8b.d
+│           │   ├── anyhow-b0f606d1af6ef0f2
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── anyhow-c6c98495f5650b3b
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-c6c98495f5650b3b
+│           │   │   └── build_script_build-c6c98495f5650b3b.d
+│           │   ├── dart-sys-28ea85b1a8d16ff9
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-28ea85b1a8d16ff9
+│           │   │   └── build_script_build-28ea85b1a8d16ff9.d
+│           │   ├── dart-sys-355c2ad997c7ed52
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   │   ├── 9c87ff79d940453d-dart_api_dl.o
+│           │   │   │   └── libdart_api_dl.a
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── dart-sys-5bac93dbd3b09bd3
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-5bac93dbd3b09bd3
+│           │   │   └── build_script_build-5bac93dbd3b09bd3.d
+│           │   ├── dart-sys-d31c995fb74dcd4a
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   │   ├── 9c87ff79d940453d-dart_api_dl.o
+│           │   │   │   └── libdart_api_dl.a
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── flutter_rust_bridge-0097bf9d67f1f4e6
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── flutter_rust_bridge-09d8a8bf7b97604c
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-09d8a8bf7b97604c
+│           │   │   └── build_script_build-09d8a8bf7b97604c.d
+│           │   ├── flutter_rust_bridge-4f1637ea28340863
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── flutter_rust_bridge-7bda9d9a5ad51f0f
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-7bda9d9a5ad51f0f
+│           │   │   └── build_script_build-7bda9d9a5ad51f0f.d
+│           │   ├── generic-array-95eb02eb098c1c8d
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-95eb02eb098c1c8d
+│           │   │   └── build_script_build-95eb02eb098c1c8d.d
+│           │   ├── generic-array-a20c929f10e43260
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── generic-array-efbaf1d6aa8fd5af
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── generic-array-fbc5bcfdb8e2e478
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-fbc5bcfdb8e2e478
+│           │   │   └── build_script_build-fbc5bcfdb8e2e478.d
+│           │   ├── libc-86c1af62b18ac193
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── libc-88129bfbc409fbb6
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-88129bfbc409fbb6
+│           │   │   └── build_script_build-88129bfbc409fbb6.d
+│           │   ├── libc-a9cfb1e95c483a5b
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-a9cfb1e95c483a5b
+│           │   │   └── build_script_build-a9cfb1e95c483a5b.d
+│           │   ├── libc-aa0929b2e862e5db
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-aa0929b2e862e5db
+│           │   │   └── build_script_build-aa0929b2e862e5db.d
+│           │   ├── libc-b6c8196b8f58c7b9
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── libc-b7c650ce112574ab
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-b7c650ce112574ab
+│           │   │   └── build_script_build-b7c650ce112574ab.d
+│           │   ├── libc-b87fb252ed646871
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── libc-dd7c974595ce1bc1
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── libsqlite3-sys-4378f0dbb7cd093b
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-4378f0dbb7cd093b
+│           │   │   └── build_script_build-4378f0dbb7cd093b.d
+│           │   ├── libsqlite3-sys-7d3340bc7e40ef0c
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   │   ├── bindgen.rs
+│           │   │   │   ├── libsqlite3.a
+│           │   │   │   └── sqlite3
+│           │   │   │       └── sqlite3.o
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── libsqlite3-sys-a767f7a3b18f0a3d
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   │   ├── bindgen.rs
+│           │   │   │   ├── libsqlite3.a
+│           │   │   │   └── sqlite3
+│           │   │   │       └── sqlite3.o
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── libsqlite3-sys-f9da3fd5eb8de619
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-f9da3fd5eb8de619
+│           │   │   └── build_script_build-f9da3fd5eb8de619.d
+│           │   ├── object-69d9f6e4107a7821
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-69d9f6e4107a7821
+│           │   │   └── build_script_build-69d9f6e4107a7821.d
+│           │   ├── object-6ea2ce4c12dd495e
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── object-9fdc2a83af9687ba
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-9fdc2a83af9687ba
+│           │   │   └── build_script_build-9fdc2a83af9687ba.d
+│           │   ├── object-e10e31ae78613c15
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── oslog-07530c92c925e77e
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-07530c92c925e77e
+│           │   │   └── build_script_build-07530c92c925e77e.d
+│           │   ├── oslog-14905d8474252125
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-14905d8474252125
+│           │   │   └── build_script_build-14905d8474252125.d
+│           │   ├── oslog-d0a42d5090e1bd0e
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   │   ├── libwrapper.a
+│           │   │   │   └── wrapper.o
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── oslog-d203498e3b5978df
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   │   ├── libwrapper.a
+│           │   │   │   └── wrapper.o
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── parking_lot_core-969ff6c781a85c2c
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-969ff6c781a85c2c
+│           │   │   └── build_script_build-969ff6c781a85c2c.d
+│           │   ├── parking_lot_core-b451bda31dfcd2c8
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── parking_lot_core-c7fabb0963f6909a
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── parking_lot_core-fbac00163fdeb01a
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-fbac00163fdeb01a
+│           │   │   └── build_script_build-fbac00163fdeb01a.d
+│           │   ├── portable-atomic-6ab5b71fbefe20d9
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── portable-atomic-8543851aa5b2ff12
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-8543851aa5b2ff12
+│           │   │   └── build_script_build-8543851aa5b2ff12.d
+│           │   ├── portable-atomic-ae1d05d0902001eb
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-ae1d05d0902001eb
+│           │   │   └── build_script_build-ae1d05d0902001eb.d
+│           │   ├── portable-atomic-fecba601882e0218
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── proc-macro2-628a13af34d0f47f
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-628a13af34d0f47f
+│           │   │   └── build_script_build-628a13af34d0f47f.d
+│           │   ├── proc-macro2-7bd2ef2b15316699
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-7bd2ef2b15316699
+│           │   │   └── build_script_build-7bd2ef2b15316699.d
+│           │   ├── proc-macro2-d24e5664061f050b
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── proc-macro2-fafcf6312b967615
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── quote-3a021cae4ad2d632
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── quote-808498d4d4a6a61d
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-808498d4d4a6a61d
+│           │   │   └── build_script_build-808498d4d4a6a61d.d
+│           │   ├── quote-84110df175ed9be4
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── quote-bb1b58f9b24e29fa
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-bb1b58f9b24e29fa
+│           │   │   └── build_script_build-bb1b58f9b24e29fa.d
+│           │   ├── typenum-58e11c44f9f99ca2
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   │   └── tests.rs
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── typenum-8ae8afcab866fcb6
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-8ae8afcab866fcb6
+│           │   │   └── build_script_build-8ae8afcab866fcb6.d
+│           │   ├── typenum-d9f3e77e79e82967
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-d9f3e77e79e82967
+│           │   │   └── build_script_build-d9f3e77e79e82967.d
+│           │   ├── typenum-eee4ccef0a309c2d
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   │   └── tests.rs
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── zerocopy-4af76279bb1ec308
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── zerocopy-6eca835e6fa0a0ee
+│           │   │   ├── invoked.timestamp
+│           │   │   ├── out
+│           │   │   ├── output
+│           │   │   ├── root-output
+│           │   │   └── stderr
+│           │   ├── zerocopy-6ed5ff1826016bfb
+│           │   │   ├── build-script-build
+│           │   │   ├── build_script_build-6ed5ff1826016bfb
+│           │   │   └── build_script_build-6ed5ff1826016bfb.d
+│           │   └── zerocopy-a0758a0f2129ed88
+│           │       ├── build-script-build
+│           │       ├── build_script_build-a0758a0f2129ed88
+│           │       └── build_script_build-a0758a0f2129ed88.d
+│           ├── deps
+│           │   ├── addr2line-863b3a8516dfdc5b.d
+│           │   ├── addr2line-9b11103e23f361ab.d
+│           │   ├── adler2-22eb1f61a976a541.d
+│           │   ├── adler2-a190b7c7327cfd18.d
+│           │   ├── ahash-2d97bdeae95e9d7f.d
+│           │   ├── ahash-a830cbc0d63d1e05.d
+│           │   ├── allo_isolate-b0bf85a7c1328b7b.d
+│           │   ├── allo_isolate-bb6dae64eacd27ed.d
+│           │   ├── anyhow-bb41cc4e94b18b46.d
+│           │   ├── anyhow-f585128bb562121f.d
+│           │   ├── atomic-9ce3b320d7a7e927.d
+│           │   ├── atomic-b13ce1bb8c282ed1.d
+│           │   ├── backtrace-68f107addbd86c40.d
+│           │   ├── backtrace-a8d8ba948ec86263.d
+│           │   ├── bitflags-3f98a409d82d6ae9.d
+│           │   ├── bitflags-a99c72e6a0ed5a5f.d
+│           │   ├── block_buffer-040ae2c1739939a5.d
+│           │   ├── block_buffer-739d19a7605f9c74.d
+│           │   ├── build_target-20509c9c116bbcca.d
+│           │   ├── build_target-3e87d37c0f76eb51.d
+│           │   ├── byteorder-198e671b595ad026.d
+│           │   ├── byteorder-7e0be1926f66c7dd.d
+│           │   ├── cc-25779b3258a2e01e.d
+│           │   ├── cc-e3e5faae1da85b89.d
+│           │   ├── cfg_if-1f9a6b91aeb36b16.d
+│           │   ├── cfg_if-3866e363b1273274.d
+│           │   ├── cfg_if-a3b49324d0741db1.d
+│           │   ├── cfg_if-c22f04bb5e5dd4ef.d
+│           │   ├── crypto_common-0491ca76e711dec6.d
+│           │   ├── crypto_common-34f767244e977972.d
+│           │   ├── dart_sys-9028bee413f3d6b6.d
+│           │   ├── dart_sys-f750ac8305c323ef.d
+│           │   ├── dashmap-db0b1cf7a4f7fc41.d
+│           │   ├── dashmap-ecabc0ab40a4d9ce.d
+│           │   ├── delegate_attr-2db6db124db25a9e.d
+│           │   ├── delegate_attr-c5a5b081d0302c80.d
+│           │   ├── digest-352cc9e98f1af9a6.d
+│           │   ├── digest-a022a61263eae116.d
+│           │   ├── fallible_iterator-35e3474ef7370021.d
+│           │   ├── fallible_iterator-d971a5313c97e439.d
+│           │   ├── fallible_streaming_iterator-72b119fe5faf8af0.d
+│           │   ├── fallible_streaming_iterator-81615bfd046a0398.d
+│           │   ├── flutter_rust_bridge-2c41a1242dc7ecaa.d
+│           │   ├── flutter_rust_bridge-eda13c93f8d041b6.d
+│           │   ├── flutter_rust_bridge_macros-f5f179856264fe35.d
+│           │   ├── flutter_rust_bridge_macros-febbd47724246602.d
+│           │   ├── futures-9bb1d93ab334f53a.d
+│           │   ├── futures-dff9014ea29167f6.d
+│           │   ├── futures_channel-5159230572a32ad1.d
+│           │   ├── futures_channel-803d4e03e3f68bfd.d
+│           │   ├── futures_core-943128e56840670f.d
+│           │   ├── futures_core-ffe22b534c50f4b6.d
+│           │   ├── futures_executor-7d3fcc6f7944715b.d
+│           │   ├── futures_executor-ca99b1fd425a42e1.d
+│           │   ├── futures_io-a3fab264302e4900.d
+│           │   ├── futures_io-f154d4eeaef27dd6.d
+│           │   ├── futures_macro-69bdb8f857106a26.d
+│           │   ├── futures_macro-dcff4110e7ac9537.d
+│           │   ├── futures_sink-36b4f5fe9f88e0ae.d
+│           │   ├── futures_sink-64b4801ee65f3682.d
+│           │   ├── futures_task-7351781bc84c34f1.d
+│           │   ├── futures_task-b351c0df08405ce7.d
+│           │   ├── futures_util-395e772b77795cdb.d
+│           │   ├── futures_util-5d55204d725fba3f.d
+│           │   ├── generic_array-88a9628a5706859a.d
+│           │   ├── generic_array-98e9ad6a45d4881e.d
+│           │   ├── gimli-a98830101c53c5a9.d
+│           │   ├── gimli-bc8c711b664bacfc.d
+│           │   ├── hashbrown-c45bb42543054970.d
+│           │   ├── hashbrown-cd326deb619e2d9a.d
+│           │   ├── hashlink-033eedb3040aa355.d
+│           │   ├── hashlink-35589377c95b59f8.d
+│           │   ├── hex-46b208f2cb93752e.d
+│           │   ├── hex-ebb228bce4eea666.d
+│           │   ├── lazy_static-129082fea3bd153c.d
+│           │   ├── lazy_static-3d10f4023c7c0ae6.d
+│           │   ├── libaddr2line-863b3a8516dfdc5b.rmeta
+│           │   ├── libaddr2line-9b11103e23f361ab.rmeta
+│           │   ├── libadler2-22eb1f61a976a541.rmeta
+│           │   ├── libadler2-a190b7c7327cfd18.rmeta
+│           │   ├── libahash-2d97bdeae95e9d7f.rmeta
+│           │   ├── libahash-a830cbc0d63d1e05.rmeta
+│           │   ├── liballo_isolate-b0bf85a7c1328b7b.rmeta
+│           │   ├── liballo_isolate-bb6dae64eacd27ed.rmeta
+│           │   ├── libanyhow-bb41cc4e94b18b46.rmeta
+│           │   ├── libanyhow-f585128bb562121f.rmeta
+│           │   ├── libatomic-9ce3b320d7a7e927.rmeta
+│           │   ├── libatomic-b13ce1bb8c282ed1.rmeta
+│           │   ├── libbacktrace-68f107addbd86c40.rmeta
+│           │   ├── libbacktrace-a8d8ba948ec86263.rmeta
+│           │   ├── libbitflags-3f98a409d82d6ae9.rmeta
+│           │   ├── libbitflags-a99c72e6a0ed5a5f.rmeta
+│           │   ├── libblock_buffer-040ae2c1739939a5.rlib
+│           │   ├── libblock_buffer-040ae2c1739939a5.rmeta
+│           │   ├── libblock_buffer-739d19a7605f9c74.rlib
+│           │   ├── libblock_buffer-739d19a7605f9c74.rmeta
+│           │   ├── libbuild_target-20509c9c116bbcca.rlib
+│           │   ├── libbuild_target-20509c9c116bbcca.rmeta
+│           │   ├── libbuild_target-3e87d37c0f76eb51.rlib
+│           │   ├── libbuild_target-3e87d37c0f76eb51.rmeta
+│           │   ├── libbyteorder-198e671b595ad026.rmeta
+│           │   ├── libbyteorder-7e0be1926f66c7dd.rmeta
+│           │   ├── libc-18d66ea421f0d42c.d
+│           │   ├── libc-526739c8b96d4608.d
+│           │   ├── libc-da270e1eb8f51c3f.d
+│           │   ├── libc-f1f5343546ae8753.d
+│           │   ├── libcc-25779b3258a2e01e.rlib
+│           │   ├── libcc-25779b3258a2e01e.rmeta
+│           │   ├── libcc-e3e5faae1da85b89.rlib
+│           │   ├── libcc-e3e5faae1da85b89.rmeta
+│           │   ├── libcfg_if-1f9a6b91aeb36b16.rmeta
+│           │   ├── libcfg_if-3866e363b1273274.rmeta
+│           │   ├── libcfg_if-a3b49324d0741db1.rlib
+│           │   ├── libcfg_if-a3b49324d0741db1.rmeta
+│           │   ├── libcfg_if-c22f04bb5e5dd4ef.rlib
+│           │   ├── libcfg_if-c22f04bb5e5dd4ef.rmeta
+│           │   ├── libcrypto_common-0491ca76e711dec6.rlib
+│           │   ├── libcrypto_common-0491ca76e711dec6.rmeta
+│           │   ├── libcrypto_common-34f767244e977972.rlib
+│           │   ├── libcrypto_common-34f767244e977972.rmeta
+│           │   ├── libdart_sys-9028bee413f3d6b6.rmeta
+│           │   ├── libdart_sys-f750ac8305c323ef.rmeta
+│           │   ├── libdashmap-db0b1cf7a4f7fc41.rmeta
+│           │   ├── libdashmap-ecabc0ab40a4d9ce.rmeta
+│           │   ├── libdelegate_attr-2db6db124db25a9e.dylib
+│           │   ├── libdelegate_attr-c5a5b081d0302c80.dylib
+│           │   ├── libdigest-352cc9e98f1af9a6.rlib
+│           │   ├── libdigest-352cc9e98f1af9a6.rmeta
+│           │   ├── libdigest-a022a61263eae116.rlib
+│           │   ├── libdigest-a022a61263eae116.rmeta
+│           │   ├── libfallible_iterator-35e3474ef7370021.rmeta
+│           │   ├── libfallible_iterator-d971a5313c97e439.rmeta
+│           │   ├── libfallible_streaming_iterator-72b119fe5faf8af0.rmeta
+│           │   ├── libfallible_streaming_iterator-81615bfd046a0398.rmeta
+│           │   ├── libflutter_rust_bridge-2c41a1242dc7ecaa.rmeta
+│           │   ├── libflutter_rust_bridge-eda13c93f8d041b6.rmeta
+│           │   ├── libflutter_rust_bridge_macros-f5f179856264fe35.dylib
+│           │   ├── libflutter_rust_bridge_macros-febbd47724246602.dylib
+│           │   ├── libfutures-9bb1d93ab334f53a.rmeta
+│           │   ├── libfutures-dff9014ea29167f6.rmeta
+│           │   ├── libfutures_channel-5159230572a32ad1.rmeta
+│           │   ├── libfutures_channel-803d4e03e3f68bfd.rmeta
+│           │   ├── libfutures_core-943128e56840670f.rmeta
+│           │   ├── libfutures_core-ffe22b534c50f4b6.rmeta
+│           │   ├── libfutures_executor-7d3fcc6f7944715b.rmeta
+│           │   ├── libfutures_executor-ca99b1fd425a42e1.rmeta
+│           │   ├── libfutures_io-a3fab264302e4900.rmeta
+│           │   ├── libfutures_io-f154d4eeaef27dd6.rmeta
+│           │   ├── libfutures_macro-69bdb8f857106a26.dylib
+│           │   ├── libfutures_macro-dcff4110e7ac9537.dylib
+│           │   ├── libfutures_sink-36b4f5fe9f88e0ae.rmeta
+│           │   ├── libfutures_sink-64b4801ee65f3682.rmeta
+│           │   ├── libfutures_task-7351781bc84c34f1.rmeta
+│           │   ├── libfutures_task-b351c0df08405ce7.rmeta
+│           │   ├── libfutures_util-395e772b77795cdb.rmeta
+│           │   ├── libfutures_util-5d55204d725fba3f.rmeta
+│           │   ├── libgeneric_array-88a9628a5706859a.rlib
+│           │   ├── libgeneric_array-88a9628a5706859a.rmeta
+│           │   ├── libgeneric_array-98e9ad6a45d4881e.rlib
+│           │   ├── libgeneric_array-98e9ad6a45d4881e.rmeta
+│           │   ├── libgimli-a98830101c53c5a9.rmeta
+│           │   ├── libgimli-bc8c711b664bacfc.rmeta
+│           │   ├── libhashbrown-c45bb42543054970.rmeta
+│           │   ├── libhashbrown-cd326deb619e2d9a.rmeta
+│           │   ├── libhashlink-033eedb3040aa355.rmeta
+│           │   ├── libhashlink-35589377c95b59f8.rmeta
+│           │   ├── libhex-46b208f2cb93752e.rlib
+│           │   ├── libhex-46b208f2cb93752e.rmeta
+│           │   ├── libhex-ebb228bce4eea666.rlib
+│           │   ├── libhex-ebb228bce4eea666.rmeta
+│           │   ├── liblazy_static-129082fea3bd153c.rmeta
+│           │   ├── liblazy_static-3d10f4023c7c0ae6.rmeta
+│           │   ├── liblibc-18d66ea421f0d42c.rmeta
+│           │   ├── liblibc-526739c8b96d4608.rlib
+│           │   ├── liblibc-526739c8b96d4608.rmeta
+│           │   ├── liblibc-da270e1eb8f51c3f.rlib
+│           │   ├── liblibc-da270e1eb8f51c3f.rmeta
+│           │   ├── liblibc-f1f5343546ae8753.rmeta
+│           │   ├── liblibsqlite3_sys-781de49c7f4e3eee.rmeta
+│           │   ├── liblibsqlite3_sys-9843809d5ea6b81c.rmeta
+│           │   ├── liblock_api-6d51dcfea4c401ba.rmeta
+│           │   ├── liblock_api-b9a22f76f68a6a8f.rmeta
+│           │   ├── liblog-3ec62c8b68ffe359.rmeta
+│           │   ├── liblog-72b0a9141ad46fce.rmeta
+│           │   ├── libmd5-4a7585188b00ddd6.rlib
+│           │   ├── libmd5-4a7585188b00ddd6.rmeta
+│           │   ├── libmd5-c92195a168b9d9e5.rlib
+│           │   ├── libmd5-c92195a168b9d9e5.rmeta
+│           │   ├── libmemchr-5ac7d5fb5bafefa0.rmeta
+│           │   ├── libmemchr-fa1939ff0d9a15cf.rmeta
+│           │   ├── libminiz_oxide-313554456db81831.rmeta
+│           │   ├── libminiz_oxide-b9d467fc241e96fd.rmeta
+│           │   ├── libnum_cpus-50ecabe9d7753762.rmeta
+│           │   ├── libnum_cpus-92a48c9ff3d5b8b5.rmeta
+│           │   ├── libobject-5468805f750000c9.rmeta
+│           │   ├── libobject-96993734eb70f96a.rmeta
+│           │   ├── libonce_cell-68c1b069737d297f.rmeta
+│           │   ├── libonce_cell-d4e1ee3660c6a22e.rmeta
+│           │   ├── liboslog-1722c29499f27ad5.rmeta
+│           │   ├── liboslog-e69f13bd6a2cb007.rmeta
+│           │   ├── libparking_lot-097de789f440a987.rmeta
+│           │   ├── libparking_lot-2ebfee219f734dba.rmeta
+│           │   ├── libparking_lot_core-2c53377c85247e58.rmeta
+│           │   ├── libparking_lot_core-3c327cbfb50c2474.rmeta
+│           │   ├── libpin_project_lite-374c8d3747172227.rmeta
+│           │   ├── libpin_project_lite-bc94e94789e748c9.rmeta
+│           │   ├── libpin_utils-463883bfd1adf470.rmeta
+│           │   ├── libpin_utils-5a2f931ba7e9a671.rmeta
+│           │   ├── libpkg_config-17755f8f911f6284.rlib
+│           │   ├── libpkg_config-17755f8f911f6284.rmeta
+│           │   ├── libpkg_config-90d787db0a3bf1ba.rlib
+│           │   ├── libpkg_config-90d787db0a3bf1ba.rmeta
+│           │   ├── libportable_atomic-530fcb750ea2c211.rmeta
+│           │   ├── libportable_atomic-685b493c189d0016.rmeta
+│           │   ├── libproc_macro2-13cad701c9cc2566.rlib
+│           │   ├── libproc_macro2-13cad701c9cc2566.rmeta
+│           │   ├── libproc_macro2-1de6f6c793fd120c.rlib
+│           │   ├── libproc_macro2-1de6f6c793fd120c.rmeta
+│           │   ├── libquote-2885a9681ee1b958.rlib
+│           │   ├── libquote-2885a9681ee1b958.rmeta
+│           │   ├── libquote-ef248b6a4956a66d.rlib
+│           │   ├── libquote-ef248b6a4956a66d.rmeta
+│           │   ├── librusqlite-7bd78660ae7bc229.rmeta
+│           │   ├── librusqlite-dd679f1dbe917aa0.rmeta
+│           │   ├── librust_lib_vault_01-354372b82ee4e0bb.rmeta
+│           │   ├── librustc_demangle-546db82d15c10c72.rmeta
+│           │   ├── librustc_demangle-92a401289bb7cab7.rmeta
+│           │   ├── libscopeguard-10f21cbe5b9568c4.rmeta
+│           │   ├── libscopeguard-29f0981978146e52.rmeta
+│           │   ├── libslab-deb642a171fc0b95.rmeta
+│           │   ├── libslab-facf02bacc9a04b9.rmeta
+│           │   ├── libsmallvec-2b4949a4d052e636.rmeta
+│           │   ├── libsmallvec-36bae4dec2823e7e.rmeta
+│           │   ├── libsqlite3_sys-781de49c7f4e3eee.d
+│           │   ├── libsqlite3_sys-9843809d5ea6b81c.d
+│           │   ├── libsyn-71db30bbc50d4109.rlib
+│           │   ├── libsyn-71db30bbc50d4109.rmeta
+│           │   ├── libsyn-b944155e8b4e6f6e.rlib
+│           │   ├── libsyn-b944155e8b4e6f6e.rmeta
+│           │   ├── libthreadpool-7d852c58e0848662.rmeta
+│           │   ├── libthreadpool-f689901a4d08a4e4.rmeta
+│           │   ├── libtokio-28d4d5e5bc9d9097.rmeta
+│           │   ├── libtokio-4441edfab6bb6612.rmeta
+│           │   ├── libtypenum-360c5896fb732455.rlib
+│           │   ├── libtypenum-360c5896fb732455.rmeta
+│           │   ├── libtypenum-6b687b430d6ebcdc.rlib
+│           │   ├── libtypenum-6b687b430d6ebcdc.rmeta
+│           │   ├── libunicode_ident-3f61b3e4259c988b.rlib
+│           │   ├── libunicode_ident-3f61b3e4259c988b.rmeta
+│           │   ├── libunicode_ident-d1c4311f6644f7fa.rlib
+│           │   ├── libunicode_ident-d1c4311f6644f7fa.rmeta
+│           │   ├── libvcpkg-241259c9e6b6fde4.rlib
+│           │   ├── libvcpkg-241259c9e6b6fde4.rmeta
+│           │   ├── libvcpkg-2e379710bc27f17d.rlib
+│           │   ├── libvcpkg-2e379710bc27f17d.rmeta
+│           │   ├── libversion_check-8e2b756926da43b1.rlib
+│           │   ├── libversion_check-8e2b756926da43b1.rmeta
+│           │   ├── libversion_check-e83099878e42a001.rlib
+│           │   ├── libversion_check-e83099878e42a001.rmeta
+│           │   ├── libzerocopy-24dd62a05539ff1c.rmeta
+│           │   ├── libzerocopy-8ad130459bc9fc9d.rmeta
+│           │   ├── lock_api-6d51dcfea4c401ba.d
+│           │   ├── lock_api-b9a22f76f68a6a8f.d
+│           │   ├── log-3ec62c8b68ffe359.d
+│           │   ├── log-72b0a9141ad46fce.d
+│           │   ├── md5-4a7585188b00ddd6.d
+│           │   ├── md5-c92195a168b9d9e5.d
+│           │   ├── memchr-5ac7d5fb5bafefa0.d
+│           │   ├── memchr-fa1939ff0d9a15cf.d
+│           │   ├── miniz_oxide-313554456db81831.d
+│           │   ├── miniz_oxide-b9d467fc241e96fd.d
+│           │   ├── num_cpus-50ecabe9d7753762.d
+│           │   ├── num_cpus-92a48c9ff3d5b8b5.d
+│           │   ├── object-5468805f750000c9.d
+│           │   ├── object-96993734eb70f96a.d
+│           │   ├── once_cell-68c1b069737d297f.d
+│           │   ├── once_cell-d4e1ee3660c6a22e.d
+│           │   ├── oslog-1722c29499f27ad5.d
+│           │   ├── oslog-e69f13bd6a2cb007.d
+│           │   ├── parking_lot-097de789f440a987.d
+│           │   ├── parking_lot-2ebfee219f734dba.d
+│           │   ├── parking_lot_core-2c53377c85247e58.d
+│           │   ├── parking_lot_core-3c327cbfb50c2474.d
+│           │   ├── pin_project_lite-374c8d3747172227.d
+│           │   ├── pin_project_lite-bc94e94789e748c9.d
+│           │   ├── pin_utils-463883bfd1adf470.d
+│           │   ├── pin_utils-5a2f931ba7e9a671.d
+│           │   ├── pkg_config-17755f8f911f6284.d
+│           │   ├── pkg_config-90d787db0a3bf1ba.d
+│           │   ├── portable_atomic-530fcb750ea2c211.d
+│           │   ├── portable_atomic-685b493c189d0016.d
+│           │   ├── proc_macro2-13cad701c9cc2566.d
+│           │   ├── proc_macro2-1de6f6c793fd120c.d
+│           │   ├── quote-2885a9681ee1b958.d
+│           │   ├── quote-ef248b6a4956a66d.d
+│           │   ├── rusqlite-7bd78660ae7bc229.d
+│           │   ├── rusqlite-dd679f1dbe917aa0.d
+│           │   ├── rust_lib_vault_01-354372b82ee4e0bb.d
+│           │   ├── rustc_demangle-546db82d15c10c72.d
+│           │   ├── rustc_demangle-92a401289bb7cab7.d
+│           │   ├── scopeguard-10f21cbe5b9568c4.d
+│           │   ├── scopeguard-29f0981978146e52.d
+│           │   ├── slab-deb642a171fc0b95.d
+│           │   ├── slab-facf02bacc9a04b9.d
+│           │   ├── smallvec-2b4949a4d052e636.d
+│           │   ├── smallvec-36bae4dec2823e7e.d
+│           │   ├── syn-71db30bbc50d4109.d
+│           │   ├── syn-b944155e8b4e6f6e.d
+│           │   ├── threadpool-7d852c58e0848662.d
+│           │   ├── threadpool-f689901a4d08a4e4.d
+│           │   ├── tokio-28d4d5e5bc9d9097.d
+│           │   ├── tokio-4441edfab6bb6612.d
+│           │   ├── typenum-360c5896fb732455.d
+│           │   ├── typenum-6b687b430d6ebcdc.d
+│           │   ├── unicode_ident-3f61b3e4259c988b.d
+│           │   ├── unicode_ident-d1c4311f6644f7fa.d
+│           │   ├── vcpkg-241259c9e6b6fde4.d
+│           │   ├── vcpkg-2e379710bc27f17d.d
+│           │   ├── version_check-8e2b756926da43b1.d
+│           │   ├── version_check-e83099878e42a001.d
+│           │   ├── zerocopy-24dd62a05539ff1c.d
+│           │   └── zerocopy-8ad130459bc9fc9d.d
+│           ├── examples
+│           └── incremental
+│               └── rust_lib_vault_01-3qwexrnji53we
+│                   ├── s-hdsyztnzdf-11ygj0p-dpdfuzgtgksh9pcofoca160h3
+│                   │   ├── dep-graph.bin
+│                   │   ├── query-cache.bin
+│                   │   └── work-products.bin
+│                   └── s-hdsyztnzdf-11ygj0p.lock
+├── rust_builder
+│   ├── LICENSE
+│   ├── README.md
+│   ├── android
+│   │   ├── build.gradle
+│   │   ├── settings.gradle
+│   │   └── src
+│   │       └── main
+│   │           └── AndroidManifest.xml
+│   ├── cargokit
+│   │   ├── LICENSE
+│   │   ├── README
+│   │   ├── build_pod.sh
+│   │   ├── build_tool
+│   │   │   ├── README.md
+│   │   │   ├── analysis_options.yaml
+│   │   │   ├── bin
+│   │   │   │   └── build_tool.dart
+│   │   │   ├── lib
+│   │   │   │   ├── build_tool.dart
+│   │   │   │   └── src
+│   │   │   │       ├── android_environment.dart
+│   │   │   │       ├── artifacts_provider.dart
+│   │   │   │       ├── build_cmake.dart
+│   │   │   │       ├── build_gradle.dart
+│   │   │   │       ├── build_pod.dart
+│   │   │   │       ├── build_tool.dart
+│   │   │   │       ├── builder.dart
+│   │   │   │       ├── cargo.dart
+│   │   │   │       ├── crate_hash.dart
+│   │   │   │       ├── environment.dart
+│   │   │   │       ├── logging.dart
+│   │   │   │       ├── options.dart
+│   │   │   │       ├── precompile_binaries.dart
+│   │   │   │       ├── rustup.dart
+│   │   │   │       ├── target.dart
+│   │   │   │       ├── util.dart
+│   │   │   │       └── verify_binaries.dart
+│   │   │   ├── pubspec.lock
+│   │   │   └── pubspec.yaml
+│   │   ├── cmake
+│   │   │   ├── cargokit.cmake
+│   │   │   └── resolve_symlinks.ps1
+│   │   ├── gradle
+│   │   │   └── plugin.gradle
+│   │   ├── run_build_tool.cmd
+│   │   └── run_build_tool.sh
+│   ├── ios
+│   │   ├── Classes
+│   │   │   └── dummy_file.c
+│   │   └── rust_lib_vault_01.podspec
+│   ├── linux
+│   │   └── CMakeLists.txt
+│   ├── macos
+│   │   ├── Classes
+│   │   │   └── dummy_file.c
+│   │   └── rust_lib_vault_01.podspec
+│   ├── pubspec.lock
+│   ├── pubspec.yaml
+│   └── windows
+│       └── CMakeLists.txt
+├── test
+│   └── widget_test.dart
+├── test_driver
+│   └── integration_test.dart
+├── vault_01.iml
+├── vault_01.txt
+├── web
+│   ├── favicon.png
+│   ├── icons
+│   │   ├── Icon-192.png
+│   │   ├── Icon-512.png
+│   │   ├── Icon-maskable-192.png
+│   │   └── Icon-maskable-512.png
+│   ├── index.html
+│   └── manifest.json
+└── windows
+    ├── CMakeLists.txt
+    ├── flutter
+    │   ├── CMakeLists.txt
+    │   ├── ephemeral
+    │   ├── generated_plugin_registrant.cc
+    │   ├── generated_plugin_registrant.h
+    │   └── generated_plugins.cmake
+    └── runner
+        ├── CMakeLists.txt
+        ├── Runner.rc
+        ├── flutter_window.cpp
+        ├── flutter_window.h
+        ├── main.cpp
+        ├── resource.h
+        ├── resources
+        │   └── app_icon.ico
+        ├── runner.exe.manifest
+        ├── utils.cpp
+        ├── utils.h
+        ├── win32_window.cpp
+        └── win32_window.h
+
+348 directories, 1282 files
