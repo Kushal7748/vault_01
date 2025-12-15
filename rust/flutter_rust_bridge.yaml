@@ -1,0 +1,9 @@
+# Local flutter_rust_bridge config for when codegen runs inside `rust/`
+# This prevents the "Please provide `rust_input`" panic when running
+# the build-phase script which `cd`'s into the `rust` folder.
+
+rust_input: "crate::api"
+rust_root: "."
+rust_output: "src/frb_generated.rs"
+dart_output: "../lib/src/frb_generated"
+dart_entrypoint_class_name: "VaultRust"

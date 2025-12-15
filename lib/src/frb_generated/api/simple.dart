@@ -6,13 +6,10 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-String initializeVault({
-  required String dbPath,
-  required String encryptionKey,
-}) => VaultRust.instance.api.crateApiSimpleInitializeVault(
-  dbPath: dbPath,
-  encryptionKey: encryptionKey,
-);
+String initializeVault(
+        {required String dbPath, required String encryptionKey}) =>
+    VaultRust.instance.api.crateApiSimpleInitializeVault(
+        dbPath: dbPath, encryptionKey: encryptionKey);
 
 PlatformInt64 saveMemory({required String content}) =>
     VaultRust.instance.api.crateApiSimpleSaveMemory(content: content);

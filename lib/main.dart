@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
 // Backend Imports
-import 'package:vault_01/src/frb_generated.dart';
-import 'package:vault_01/src/frb_generated/api/simple.dart';
+import 'src/frb_generated/frb_generated.dart';
+import 'src/frb_generated/api/simple.dart';
 
 // Frontend UI Imports
 import 'core/theme/app_theme.dart';
@@ -15,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // 1. Initialize Rust Backend
-  await VaultRust.init();
+  await VaultRust.init(); 
 
   // 2. Initialize Database
   await setupDatabase();

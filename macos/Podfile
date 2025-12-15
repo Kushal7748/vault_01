@@ -30,10 +30,6 @@ target 'Runner' do
   use_frameworks!
   flutter_install_all_macos_pods File.dirname(File.realpath(__FILE__))
 
-  # Add the Rust CocoaPod so the cargokit build script runs and produces the
-  # macOS framework or static library which will be embedded into the app.
-  # The podspec is located in `rust_builder/macos` in this repo.
-  pod 'rust_lib_vault_01', :path => '../rust_builder/macos'
   target 'RunnerTests' do
     inherit! :search_paths
   end

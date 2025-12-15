@@ -10,10 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   
-  # Your Rust bridge dependency
-  rust_lib_vault_01:
-    path: rust_builder
-  
   # State management
   flutter_riverpod: ^2.4.0
   
@@ -29,6 +25,10 @@ dependencies:
   path_provider: ^2.1.5
   hooks_riverpod: ^2.6.1
   path: ^1.8.0
+  
+  # Rust bindings
+  rust_lib_vault_01:
+    path: ./rust_builder
 
 dev_dependencies:
   flutter_test:

@@ -36,8 +36,12 @@ class VaultRust
 
   /// Initialize flutter_rust_bridge in mock mode.
   /// No libraries for FFI are loaded.
-  static void initMock({required VaultRustApi api}) {
-    instance.initMockImpl(api: api);
+  static void initMock({
+    required VaultRustApi api,
+  }) {
+    instance.initMockImpl(
+      api: api,
+    );
   }
 
   /// Dispose flutter_rust_bridge
@@ -69,17 +73,15 @@ class VaultRust
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
-        stem: 'rust_lib_vault_01',
-        ioDirectory: 'rust/target/release/',
-        webPrefix: 'pkg/',
-      );
+    stem: 'rust_lib_vault_01',
+    ioDirectory: 'rust/target/release/',
+    webPrefix: 'pkg/',
+  );
 }
 
 abstract class VaultRustApi extends BaseApi {
-  String crateApiSimpleInitializeVault({
-    required String dbPath,
-    required String encryptionKey,
-  });
+  String crateApiSimpleInitializeVault(
+      {required String dbPath, required String encryptionKey});
 
   PlatformInt64 crateApiSimpleSaveMemory({required String content});
 }
@@ -94,27 +96,23 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   });
 
   @override
-  String crateApiSimpleInitializeVault({
-    required String dbPath,
-    required String encryptionKey,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(dbPath, serializer);
-          sse_encode_String(encryptionKey, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_String,
-          decodeErrorData: sse_decode_String,
-        ),
-        constMeta: kCrateApiSimpleInitializeVaultConstMeta,
-        argValues: [dbPath, encryptionKey],
-        apiImpl: this,
+  String crateApiSimpleInitializeVault(
+      {required String dbPath, required String encryptionKey}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_String(dbPath, serializer);
+        sse_encode_String(encryptionKey, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_String,
+        decodeErrorData: sse_decode_String,
       ),
-    );
+      constMeta: kCrateApiSimpleInitializeVaultConstMeta,
+      argValues: [dbPath, encryptionKey],
+      apiImpl: this,
+    ));
   }
 
   TaskConstMeta get kCrateApiSimpleInitializeVaultConstMeta =>
@@ -125,26 +123,26 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
 
   @override
   PlatformInt64 crateApiSimpleSaveMemory({required String content}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(content, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_i_64,
-          decodeErrorData: sse_decode_String,
-        ),
-        constMeta: kCrateApiSimpleSaveMemoryConstMeta,
-        argValues: [content],
-        apiImpl: this,
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_String(content, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_i_64,
+        decodeErrorData: sse_decode_String,
       ),
-    );
+      constMeta: kCrateApiSimpleSaveMemoryConstMeta,
+      argValues: [content],
+      apiImpl: this,
+    ));
   }
 
-  TaskConstMeta get kCrateApiSimpleSaveMemoryConstMeta =>
-      const TaskConstMeta(debugName: "save_memory", argNames: ["content"]);
+  TaskConstMeta get kCrateApiSimpleSaveMemoryConstMeta => const TaskConstMeta(
+        debugName: "save_memory",
+        argNames: ["content"],
+      );
 
   @protected
   String dco_decode_String(dynamic raw) {
@@ -222,9 +220,7 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
 
   @protected
   void sse_encode_list_prim_u_8_strict(
-    Uint8List self,
-    SseSerializer serializer,
-  ) {
+      Uint8List self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.length, serializer);
     serializer.buffer.putUint8List(self);
