@@ -15,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // 1. Initialize Rust Backend
-  await RustLib.init();
+  await VaultRust.init();
 
   // 2. Initialize Database
   await setupDatabase();
