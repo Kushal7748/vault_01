@@ -6,11 +6,7 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// Suppress internal member warning for VaultRust.instance which is the
-// idiomatic FRB pattern for accessing the initialized instance.
-
-/// FRB function to initialize the encrypted database connection.
-Future<void> initializeVault({
+String initializeVault({
   required String dbPath,
   required String encryptionKey,
 }) => VaultRust.instance.api.crateApiSimpleInitializeVault(
@@ -18,6 +14,5 @@ Future<void> initializeVault({
   encryptionKey: encryptionKey,
 );
 
-/// FRB function to securely save a new memory fragment.
-Future<void> saveMemory({required String content}) =>
+PlatformInt64 saveMemory({required String content}) =>
     VaultRust.instance.api.crateApiSimpleSaveMemory(content: content);

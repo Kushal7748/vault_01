@@ -1,40 +1,47 @@
-// src/rust/api/simple.rs
+use crate::database_impl::VaultDatabase;
+use std::sync::OnceLock;
+use rusqlite::params;
 
-use crate::database::VaultDb;
-use crate::DB_HANDLE;
+// Stores the globally accessible, initialized database instance
+static VAULT_DB: OnceLock<VaultDatabase> = OnceLock::new();
 
-/// FRB function to initialize the encrypted database connection.
-pub fn initialize_vault(db_path: String, encryption_key: String) -> Result<(), String> {
-    // 1. Initialize the VaultDb connection
-    match VaultDb::new(&db_path, &encryption_key) {
-        Ok(db) => {
-            // 2. Run the table setup query
-            db.execute_initial_setup()
-                .map_err(|e| format!("Database setup failed: {}", e))?;
-                
-            // 3. Lock the global handle and store the initialized connection
-            let mut handle = DB_HANDLE.lock();
-            *handle = Some(db);
-            
-            Ok(())
-        },
-        Err(e) => Err(format!("VaultDb initialization failed: {}", e)),
-    }
+#[flutter_rust_bridge::frb(sync)]
+pub fn initialize_vault(db_path: String, encryption_key: String) -> Result<String, String> {
+    // 1. Create database and apply encryption
+    let db = VaultDatabase::new(&db_path, &encryption_key)
+        .map_err(|e| format!("Failed to create database: {}", e))?;
+
+    // 2. Run migrations
+    let applied = db.run_migrations()
+        .map_err(|e| format!("Migration failed: {}", e))?;
+
+    // 3. Store globally for subsequent API calls
+    VAULT_DB.set(db).map_err(|_| "Vault already initialized".to_string())?;
+
+    Ok(format!("Vault initialized! Applied {} migrations", applied))
 }
 
-/// FRB function to securely save a new memory fragment.
-pub fn save_memory(content: String) -> Result<(), String> {
-    // 🔒 1. Acquire the Mutex Lock
-    let db_guard = DB_HANDLE.lock(); 
-    
-    // ❓ 2. Ensure the Database is Initialized
-    let db_handle = db_guard
-        .as_ref()
-        .ok_or_else(|| "Database not initialized. Please run initialize_vault first.".to_string())?;
-    
-    // 📝 3. Execute the INSERT Query
-    match db_handle.add_memory(content) {
-        Ok(_) => Ok(()),
-        Err(e) => Err(format!("SQLCipher INSERT failed: {}", e)), 
-    }
+#[flutter_rust_bridge::frb(sync)]
+pub fn save_memory(content: String) -> Result<i64, String> {
+    let db = VAULT_DB.get().ok_or_else(|| "Vault not initialized".to_string())?;
+    let conn = db.get_connection();
+    let conn_guard = conn.lock().unwrap();
+
+    let timestamp = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .unwrap()
+        .as_secs() as i64;
+
+    conn_guard.execute(
+        "INSERT INTO memory_entries (content, encrypted_data, tags, created_at, updated_at) VALUES (?1, ?2, ?3, ?4, ?5)",
+        params![
+            content,
+            content.as_bytes(), // TODO: Encrypt this
+            "",
+            timestamp,
+            timestamp
+        ],
+    ).map_err(|e| format!("Save failed: {}", e))?;
+
+    Ok(conn_guard.last_insert_rowid())
 }

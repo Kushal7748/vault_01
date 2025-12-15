@@ -1,13 +1,17 @@
 mod frb_generated; /* AUTO INJECTED BY flutter_rust_bridge. This line may not be accurate, and you can change it according to your needs. */
 pub mod api;
 // src/lib.rs
-mod database;
+// Avoid ambiguous module names on disk by referencing the specific file for the database implementation.
+#[path = "database/mod.rs"]
+pub mod database_impl;
 use once_cell::sync::Lazy;
 use parking_lot::Mutex;
-use database::VaultDb; // Assuming 'database' is a sibling module of lib.rs
+// Export the API from `api::simple` and the database handle from the explicit module
+pub use api::simple::*;
+pub use database_impl::VaultDatabase;
 
 // The thread-safe, global database handle
-pub static DB_HANDLE: Lazy<Mutex<Option<VaultDb>>> = Lazy::new(|| Mutex::new(None));
+pub static DB_HANDLE: Lazy<Mutex<Option<VaultDatabase>>> = Lazy::new(|| Mutex::new(None));
 
 
 // --- Task B1.1R: FRB Refactor (initialize_vault) ---

@@ -76,12 +76,12 @@ class VaultRust
 }
 
 abstract class VaultRustApi extends BaseApi {
-  Future<void> crateApiSimpleInitializeVault({
+  String crateApiSimpleInitializeVault({
     required String dbPath,
     required String encryptionKey,
   });
 
-  Future<void> crateApiSimpleSaveMemory({required String content});
+  PlatformInt64 crateApiSimpleSaveMemory({required String content});
 }
 
 class VaultRustApiImpl extends VaultRustApiImplPlatform
@@ -94,25 +94,20 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   });
 
   @override
-  Future<void> crateApiSimpleInitializeVault({
+  String crateApiSimpleInitializeVault({
     required String dbPath,
     required String encryptionKey,
   }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
           sse_encode_String(dbPath, serializer);
           sse_encode_String(encryptionKey, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 1,
-            port: port_,
-          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
         },
         codec: SseCodec(
-          decodeSuccessData: sse_decode_unit,
+          decodeSuccessData: sse_decode_String,
           decodeErrorData: sse_decode_String,
         ),
         constMeta: kCrateApiSimpleInitializeVaultConstMeta,
@@ -129,21 +124,16 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
       );
 
   @override
-  Future<void> crateApiSimpleSaveMemory({required String content}) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
+  PlatformInt64 crateApiSimpleSaveMemory({required String content}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
           sse_encode_String(content, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 2,
-            port: port_,
-          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
         },
         codec: SseCodec(
-          decodeSuccessData: sse_decode_unit,
+          decodeSuccessData: sse_decode_i_64,
           decodeErrorData: sse_decode_String,
         ),
         constMeta: kCrateApiSimpleSaveMemoryConstMeta,
@@ -163,6 +153,12 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   }
 
   @protected
+  PlatformInt64 dco_decode_i_64(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dcoDecodeI64(raw);
+  }
+
+  @protected
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as Uint8List;
@@ -175,16 +171,16 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   }
 
   @protected
-  void dco_decode_unit(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return;
-  }
-
-  @protected
   String sse_decode_String(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_list_prim_u_8_strict(deserializer);
     return utf8.decoder.convert(inner);
+  }
+
+  @protected
+  PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getPlatformInt64();
   }
 
   @protected
@@ -198,11 +194,6 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   int sse_decode_u_8(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getUint8();
-  }
-
-  @protected
-  void sse_decode_unit(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
   }
 
   @protected
@@ -224,6 +215,12 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   }
 
   @protected
+  void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putPlatformInt64(self);
+  }
+
+  @protected
   void sse_encode_list_prim_u_8_strict(
     Uint8List self,
     SseSerializer serializer,
@@ -237,11 +234,6 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   void sse_encode_u_8(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putUint8(self);
-  }
-
-  @protected
-  void sse_encode_unit(void self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
   }
 
   @protected

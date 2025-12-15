@@ -1,89 +1,126 @@
-// lib/main.dart (Using RELATIVE PATHS as a fix)
-
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart' as path; 
-import 'dart:io' show Platform, File, Directory;
-
-// FRB Imports: USING RELATIVE PATHS (Assuming main.dart is in lib/)
 import 'package:vault_01/src/frb_generated/frb_generated.dart';
-import 'package:vault_01/src/frb_generated/api/simple.dart' as simple;
-import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
- 
+import 'package:vault_01/src/frb_generated/api/simple.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
-// --- Helper Functions ---
-Future<String> getDatabasePath() async {
-  final directory = await getApplicationDocumentsDirectory();
-  final dbPath = path.join(directory.path, 'vault.db'); 
-  return dbPath;
-}
-
-// --- Main Initialization Logic ---
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Try to load the Rust dynamic library directly from the local cargo build
-  // output when running on macOS (useful for `flutter run` debug sessions).
-  ExternalLibrary? extLib;
-  if (Platform.isMacOS) {
-    final possible = path.join(Directory.current.path, 'rust', 'target', 'debug', 'librust_lib_vault_01.dylib');
-    final f = File(possible);
-    if (f.existsSync()) {
-      extLib = ExternalLibrary.open(possible);
-      print('Using local Rust dylib at: $possible');
-    }
-  }
-
-  // Initialize FRB; pass `externalLibrary` when available to avoid the
-  // framework lookup issue on macOS during local debug builds.
-  await VaultRust.init(externalLibrary: extLib);
-
-  final dbFilePath = await getDatabasePath();
-  const String _encryptionKey = 'MyStrongSQLCipherKey12345!'; 
-  
-  print("--- Starting Vault Initialization Test (FRB) ---");
-  
-  try {
-   // lib/main.dart
-await simple.initializeVault(
-  dbPath: dbFilePath,
-  encryptionKey: _encryptionKey,
-);
-    print("✅ Initialization and Table Creation SUCCESSFUL.");
-
-  } catch (e) {
-    print("❌ DATABASE STATUS: Initialization FAILED.");
-    print("Rust Error: $e");
-  }
-  print("--- Attempting to run Flutter UI ---");
+  await VaultRust.init();
+  await setupDatabase();
   runApp(const MyApp());
 }
 
-// ... MyApp Class
-// ... MyApp Class (unchanged)
-// --- Application Structure ---
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Vault_01',
-      theme: ThemeData.dark(useMaterial3: true), 
-      home: Scaffold(
-        backgroundColor: Colors.indigo[900], 
-        appBar: AppBar(
-          title: const Text('Vault 01 - FFI Success!'),
-          backgroundColor: Colors.deepPurple, 
-        ),
-        body: const Center(
-          child: Text(
-            'FFI Initialization Confirmed.',
-            style: TextStyle(fontSize: 24, color: Colors.white),
-          ),
+      title: 'Vault',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Vault'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _controller,
+              decoration: const InputDecoration(
+                hintText: 'Enter your secret note',
+                border: OutlineInputBorder(),
+              ),
+              maxLines: 5,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                await saveData();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Data saved successfully')),
+                );
+                _controller.clear();
+              },
+              child: const Text('Save'),
+            ),
+          ],
         ),
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+
+// Initialize database
+Future<void> setupDatabase() async {
+  try {
+    // 1. Get the correct cross-platform database path
+    final dbPath = await getDatabasePath();
+    print('📁 Database path: $dbPath');
+    
+    // 2. Ensure directory exists
+    final file = File(dbPath);
+    final dir = file.parent;
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+      print('✅ Created directory: ${dir.path}');
+    }
+    
+    // 3. Call the Rust function with the path and key
+    final result = initializeVault(
+      dbPath: dbPath,
+      encryptionKey: 'your-secure-key-here',
+    );
+    print("✅ Initialization and Table Creation SUCCESSFUL: $result");
+  } catch (e) {
+    print('Database setup failed: $e');
+    rethrow;
+  }
+}
+
+// Save data
+Future<void> saveData() async {
+  try {
+    saveMemory(content: 'My secret note');
+    print('Data saved successfully');
+  } catch (e) {
+    print('Save failed: $e');
+  }
+}
+
+// Helper to determine the database file path
+Future<String> getDatabasePath() async {
+  final dir = await getApplicationDocumentsDirectory(); 
+  return '${dir.path}/vault.db';
 }
