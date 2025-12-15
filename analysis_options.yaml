@@ -24,5 +24,13 @@ linter:
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 
+analyzer:
+  # Exclude tool / generated code that isn't relevant to app analysis
+  exclude:
+    - rust_builder/**
+    - lib/src/frb_generated/frb_generated.web.dart
+
+  # Some generated FRB web bindings used to require experimental features, no longer needed.
+
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

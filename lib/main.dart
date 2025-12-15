@@ -1,86 +1,50 @@
-import 'package:flutter/material.dart';
-import 'package:vault_01/src/frb_generated/frb_generated.dart';
-import 'package:vault_01/src/frb_generated/api/simple.dart';
-import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
+
+// Backend Imports
+import 'package:vault_01/src/frb_generated.dart';
+import 'package:vault_01/src/frb_generated/api/simple.dart';
+
+// Frontend UI Imports
+import 'core/theme/app_theme.dart';
+import 'features/auth/presentation/screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await VaultRust.init();
+
+  // 1. Initialize Rust Backend
+  await RustLib.init();
+
+  // 2. Initialize Database
   await setupDatabase();
-  runApp(const MyApp());
+
+  // 3. Run the App (Wrapped in ProviderScope for Riverpod)
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vault',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Vault'),
+      title: 'Vault 01',
+      debugShowCheckedModeBanner: false,
+      // Use the Friend's Themes
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      // Load the Friend's Login Screen
+      home: const LoginScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController _controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _controller,
-              decoration: const InputDecoration(
-                hintText: 'Enter your secret note',
-                border: OutlineInputBorder(),
-              ),
-              maxLines: 5,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                await saveData();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Data saved successfully')),
-                );
-                _controller.clear();
-              },
-              child: const Text('Save'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
+// ---------------------------------------------------------
+// BACKEND UTILITY FUNCTIONS (Kept from your work)
+// ---------------------------------------------------------
 
 // Initialize database
 Future<void> setupDatabase() async {
@@ -105,17 +69,7 @@ Future<void> setupDatabase() async {
     print("✅ Initialization and Table Creation SUCCESSFUL: $result");
   } catch (e) {
     print('Database setup failed: $e');
-    rethrow;
-  }
-}
-
-// Save data
-Future<void> saveData() async {
-  try {
-    saveMemory(content: 'My secret note');
-    print('Data saved successfully');
-  } catch (e) {
-    print('Save failed: $e');
+    // We catch the error but don't stop the app, so the UI still loads
   }
 }
 
