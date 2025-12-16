@@ -178,10 +178,11 @@ fn pde_ffi_dispatcher_sync_impl(
     data_len: i32,
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
+    eprintln!("[frb] pde_sync call func_id={}", func_id);
     match func_id {
         1 => wire__crate__api__simple__initialize_vault_impl(ptr, rust_vec_len, data_len),
         2 => wire__crate__api__simple__save_memory_impl(ptr, rust_vec_len, data_len),
-        _ => unreachable!(),
+        other => panic!("[frb] unexpected func_id: {}", other),
     }
 }
 

@@ -1,16 +1,11 @@
-// This file was moved/renamed to `lib/features/vault/services/vault_service.dart`.
-// Kept as a placeholder to avoid breaking any lingering imports.
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'secret_model.dart';
 
-// 1. The Mock Database Service
 class VaultService {
-  // Singleton pattern for the mock service
   static final VaultService _instance = VaultService._internal();
   factory VaultService() => _instance;
   VaultService._internal();
 
-  // In-memory Mock Data
   final List<SecretModel> _mockDatabase = [
     const SecretModel(
         id: '1',
@@ -33,10 +28,17 @@ class VaultService {
   void deleteSecret(String id) {
     _mockDatabase.removeWhere((element) => element.id == id);
   }
+
+  // NEW: Update Logic
+  void updateSecret(SecretModel updatedSecret) {
+    final index =
+        _mockDatabase.indexWhere((element) => element.id == updatedSecret.id);
+    if (index != -1) {
+      _mockDatabase[index] = updatedSecret;
+    }
+  }
 }
 
-// 2. The Riverpod Provider (Controller)
-// This manages the state of the list that the UI listens to.
 final vaultListProvider =
     NotifierProvider<VaultListNotifier, List<SecretModel>>(() {
   return VaultListNotifier();
@@ -47,32 +49,35 @@ class VaultListNotifier extends Notifier<List<SecretModel>> {
 
   @override
   List<SecretModel> build() {
-    // Initial Load
     return _service.getSecrets();
   }
 
   void addSecret(String title, String value, String? username) {
     final newSecret = SecretModel(
-      id: DateTime.now().toString(), // Simple ID generation
+      id: DateTime.now().toString(),
       title: title,
       value: value,
       username: username,
     );
-
     _service.addSecret(newSecret);
-
-    // Update State
     state = [...state, newSecret];
   }
 
   void removeSecret(String id) {
-    // 1. Update Service
     _service.deleteSecret(id);
-
-    // 2. Update State (Filter out the deleted ID)
     state = [
       for (final secret in state)
         if (secret.id != id) secret,
+    ];
+  }
+
+  // NEW: Edit Logic
+  void editSecret(SecretModel updatedSecret) {
+    _service.updateSecret(updatedSecret);
+    // Update the specific item in the state list
+    state = [
+      for (final secret in state)
+        if (secret.id == updatedSecret.id) updatedSecret else secret,
     ];
   }
 }

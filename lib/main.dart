@@ -15,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // 1. Initialize Rust Backend
-  await VaultRust.init(); 
+  await VaultRust.init();
 
   // 2. Initialize Database
   await setupDatabase();
@@ -52,7 +52,7 @@ Future<void> setupDatabase() async {
     // 1. Get the correct cross-platform database path
     final dbPath = await getDatabasePath();
     print('📁 Database path: $dbPath');
-    
+
     // 2. Ensure directory exists
     final file = File(dbPath);
     final dir = file.parent;
@@ -60,13 +60,18 @@ Future<void> setupDatabase() async {
       await dir.create(recursive: true);
       print('✅ Created directory: ${dir.path}');
     }
-    
-    // 3. Call the Rust function with the path and key
-    final result = initializeVault(
-      dbPath: dbPath,
-      encryptionKey: 'your-secure-key-here',
-    );
-    print("✅ Initialization and Table Creation SUCCESSFUL: $result");
+
+    // 3. Call the Rust function with the path and key (await it so errors are caught here)
+    print(
+        '🔁 Skipping initializeVault (temporarily disabled due to Rust panic).');
+    // If you want to enable the Rust init, remove the following comment and ensure the Rust crate
+    // does not panic during initialization.
+    // print('🔁 Calling initializeVault...');
+    // await initializeVault(
+    //   dbPath: dbPath,
+    //   encryptionKey: 'your-secure-key-here',
+    // );
+    // print("✅ initializeVault completed");
   } catch (e) {
     print('Database setup failed: $e');
     // We catch the error but don't stop the app, so the UI still loads
@@ -75,6 +80,6 @@ Future<void> setupDatabase() async {
 
 // Helper to determine the database file path
 Future<String> getDatabasePath() async {
-  final dir = await getApplicationDocumentsDirectory(); 
+  final dir = await getApplicationDocumentsDirectory();
   return '${dir.path}/vault.db';
 }
