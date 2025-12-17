@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
   # State management
   flutter_riverpod: ^2.4.0
   
@@ -26,9 +25,11 @@ dependencies:
   hooks_riverpod: ^2.6.1
   path: ^1.8.0
   
-  # Rust bindings
+  # Rust bindings (local crate)
   rust_lib_vault_01:
-    path: ./rust_builder
+    path: rust_builder
+  
+>>>>>>> fix/resolve-lib-main-merge
 
 dev_dependencies:
   flutter_test:
