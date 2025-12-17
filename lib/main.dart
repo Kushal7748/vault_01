@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vault_01/src/frb_generated/frb_generated.dart';
 import 'package:vault_01/src/frb_generated/api/simple.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
+import 'core/theme/app_theme.dart';
+import 'features/auth/presentation/screens/login_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await VaultRust.init();
+  // Initialize Rust bindings and database before app start
+  try {
+    await VaultRust.init();
+  } catch (e) {
+    // If Rust init fails, log and continue so the UI can still load for development
+    // Consider surfacing this error to the user in production.
+    debugPrint('Warning: VaultRust.init() failed: $e');
+  }
+
   await setupDatabase();
-  runApp(const MyApp());
+
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,16 +30,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vault',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Vault'),
+      title: 'Vault 01',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      home: const LoginScreen(),
     );
   }
 }
 
+// Keep a simple home page available for quick testing or legacy flows
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -87,24 +101,24 @@ Future<void> setupDatabase() async {
   try {
     // 1. Get the correct cross-platform database path
     final dbPath = await getDatabasePath();
-    print('📁 Database path: $dbPath');
-    
+    debugPrint('📁 Database path: $dbPath');
+
     // 2. Ensure directory exists
     final file = File(dbPath);
     final dir = file.parent;
     if (!await dir.exists()) {
       await dir.create(recursive: true);
-      print('✅ Created directory: ${dir.path}');
+      debugPrint('✅ Created directory: ${dir.path}');
     }
-    
+
     // 3. Call the Rust function with the path and key
     final result = initializeVault(
       dbPath: dbPath,
       encryptionKey: 'your-secure-key-here',
     );
-    print("✅ Initialization and Table Creation SUCCESSFUL: $result");
+    debugPrint("✅ Initialization and Table Creation SUCCESSFUL: $result");
   } catch (e) {
-    print('Database setup failed: $e');
+    debugPrint('Database setup failed: $e');
     rethrow;
   }
 }
@@ -113,14 +127,14 @@ Future<void> setupDatabase() async {
 Future<void> saveData() async {
   try {
     saveMemory(content: 'My secret note');
-    print('Data saved successfully');
+    debugPrint('Data saved successfully');
   } catch (e) {
-    print('Save failed: $e');
+    debugPrint('Save failed: $e');
   }
 }
 
 // Helper to determine the database file path
 Future<String> getDatabasePath() async {
-  final dir = await getApplicationDocumentsDirectory(); 
+  final dir = await getApplicationDocumentsDirectory();
   return '${dir.path}/vault.db';
 }

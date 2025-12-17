@@ -7,10 +7,6 @@ class AppTheme {
       seedColor: Colors.blue,
       brightness: Brightness.light,
     ),
-    appBarTheme: const AppBarTheme(
-      centerTitle: true,
-      elevation: 0,
-    ),
     inputDecorationTheme: const InputDecorationTheme(
       border: OutlineInputBorder(),
       filled: true,
