@@ -123,10 +123,6 @@ Future<void> setupDatabase() async {
     );
     debugPrint("✅ Initialization and Table Creation SUCCESSFUL: $result");
   } catch (e) {
-<<<<<<< HEAD
-    print('Database setup failed: $e');
-    // We catch the error but don't stop the app, so the UI still loads
-=======
     debugPrint('Database setup failed: $e');
     rethrow;
   }
@@ -139,7 +135,6 @@ Future<void> saveData() async {
     debugPrint('Data saved successfully');
   } catch (e) {
     debugPrint('Save failed: $e');
->>>>>>> fix/resolve-lib-main-merge
   }
 }
 

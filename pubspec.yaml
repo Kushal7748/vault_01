@@ -28,8 +28,6 @@ dependencies:
   # Rust bindings (local crate)
   rust_lib_vault_01:
     path: rust_builder
-  
->>>>>>> fix/resolve-lib-main-merge
 
 dev_dependencies:
   flutter_test:
