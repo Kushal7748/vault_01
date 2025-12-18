@@ -69,7 +69,7 @@ class VaultRust
   String get codegenVersion => '2.11.1';
 
   @override
-  int get rustContentHash => 1143245674;
+  int get rustContentHash => -1738862903;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -80,8 +80,14 @@ class VaultRust
 }
 
 abstract class VaultRustApi extends BaseApi {
+  String crateApiSimpleDeleteMemory({required PlatformInt64 id});
+
+  MemoryEntry crateApiSimpleGetMemory({required PlatformInt64 id});
+
   String crateApiSimpleInitializeVault(
       {required String dbPath, required String encryptionKey});
+
+  List<MemoryEntry> crateApiSimpleListMemories();
 
   PlatformInt64 crateApiSimpleSaveMemory({required String content});
 }
@@ -96,6 +102,52 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   });
 
   @override
+  String crateApiSimpleDeleteMemory({required PlatformInt64 id}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_i_64(id, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_String,
+        decodeErrorData: sse_decode_String,
+      ),
+      constMeta: kCrateApiSimpleDeleteMemoryConstMeta,
+      argValues: [id],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSimpleDeleteMemoryConstMeta => const TaskConstMeta(
+        debugName: "delete_memory",
+        argNames: ["id"],
+      );
+
+  @override
+  MemoryEntry crateApiSimpleGetMemory({required PlatformInt64 id}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_i_64(id, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_memory_entry,
+        decodeErrorData: sse_decode_String,
+      ),
+      constMeta: kCrateApiSimpleGetMemoryConstMeta,
+      argValues: [id],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSimpleGetMemoryConstMeta => const TaskConstMeta(
+        debugName: "get_memory",
+        argNames: ["id"],
+      );
+
+  @override
   String crateApiSimpleInitializeVault(
       {required String dbPath, required String encryptionKey}) {
     return handler.executeSync(SyncTask(
@@ -103,7 +155,7 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_String(dbPath, serializer);
         sse_encode_String(encryptionKey, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_String,
@@ -122,12 +174,34 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
       );
 
   @override
+  List<MemoryEntry> crateApiSimpleListMemories() {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 4)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_list_memory_entry,
+        decodeErrorData: sse_decode_String,
+      ),
+      constMeta: kCrateApiSimpleListMemoriesConstMeta,
+      argValues: [],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSimpleListMemoriesConstMeta => const TaskConstMeta(
+        debugName: "list_memories",
+        argNames: [],
+      );
+
+  @override
   PlatformInt64 crateApiSimpleSaveMemory({required String content}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_String(content, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 5)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_i_64,
@@ -151,15 +225,43 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   }
 
   @protected
+  int dco_decode_i_32(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as int;
+  }
+
+  @protected
   PlatformInt64 dco_decode_i_64(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dcoDecodeI64(raw);
   }
 
   @protected
+  List<MemoryEntry> dco_decode_list_memory_entry(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return (raw as List<dynamic>).map(dco_decode_memory_entry).toList();
+  }
+
+  @protected
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as Uint8List;
+  }
+
+  @protected
+  MemoryEntry dco_decode_memory_entry(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 6)
+      throw Exception('unexpected arr length: expect 6 but see ${arr.length}');
+    return MemoryEntry(
+      id: dco_decode_i_64(arr[0]),
+      content: dco_decode_String(arr[1]),
+      tags: dco_decode_String(arr[2]),
+      createdAt: dco_decode_i_64(arr[3]),
+      updatedAt: dco_decode_i_64(arr[4]),
+      accessedCount: dco_decode_i_32(arr[5]),
+    );
   }
 
   @protected
@@ -176,9 +278,27 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   }
 
   @protected
+  int sse_decode_i_32(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getInt32();
+  }
+
+  @protected
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getPlatformInt64();
+  }
+
+  @protected
+  List<MemoryEntry> sse_decode_list_memory_entry(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var len_ = sse_decode_i_32(deserializer);
+    var ans_ = <MemoryEntry>[];
+    for (var idx_ = 0; idx_ < len_; ++idx_) {
+      ans_.add(sse_decode_memory_entry(deserializer));
+    }
+    return ans_;
   }
 
   @protected
@@ -189,15 +309,27 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   }
 
   @protected
-  int sse_decode_u_8(SseDeserializer deserializer) {
+  MemoryEntry sse_decode_memory_entry(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getUint8();
+    var var_id = sse_decode_i_64(deserializer);
+    var var_content = sse_decode_String(deserializer);
+    var var_tags = sse_decode_String(deserializer);
+    var var_createdAt = sse_decode_i_64(deserializer);
+    var var_updatedAt = sse_decode_i_64(deserializer);
+    var var_accessedCount = sse_decode_i_32(deserializer);
+    return MemoryEntry(
+        id: var_id,
+        content: var_content,
+        tags: var_tags,
+        createdAt: var_createdAt,
+        updatedAt: var_updatedAt,
+        accessedCount: var_accessedCount);
   }
 
   @protected
-  int sse_decode_i_32(SseDeserializer deserializer) {
+  int sse_decode_u_8(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getInt32();
+    return deserializer.buffer.getUint8();
   }
 
   @protected
@@ -213,9 +345,25 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   }
 
   @protected
+  void sse_encode_i_32(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putInt32(self);
+  }
+
+  @protected
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putPlatformInt64(self);
+  }
+
+  @protected
+  void sse_encode_list_memory_entry(
+      List<MemoryEntry> self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    for (final item in self) {
+      sse_encode_memory_entry(item, serializer);
+    }
   }
 
   @protected
@@ -227,15 +375,20 @@ class VaultRustApiImpl extends VaultRustApiImplPlatform
   }
 
   @protected
-  void sse_encode_u_8(int self, SseSerializer serializer) {
+  void sse_encode_memory_entry(MemoryEntry self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putUint8(self);
+    sse_encode_i_64(self.id, serializer);
+    sse_encode_String(self.content, serializer);
+    sse_encode_String(self.tags, serializer);
+    sse_encode_i_64(self.createdAt, serializer);
+    sse_encode_i_64(self.updatedAt, serializer);
+    sse_encode_i_32(self.accessedCount, serializer);
   }
 
   @protected
-  void sse_encode_i_32(int self, SseSerializer serializer) {
+  void sse_encode_u_8(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putInt32(self);
+    serializer.buffer.putUint8(self);
   }
 
   @protected

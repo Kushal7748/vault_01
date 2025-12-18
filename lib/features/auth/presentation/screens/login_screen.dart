@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../features/vault/presentation/screens/vault_home_screen.dart';
-
+import 'package:vault_01/test_database.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -8,6 +8,14 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
+      floatingActionButton: FloatingActionButton(
+    onPressed: () async {
+      await testDatabaseOperations(context);
+    },
+    backgroundColor: Colors.blue,
+    child: const Icon(Icons.science),
+    tooltip: 'Test Database',
+  ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),

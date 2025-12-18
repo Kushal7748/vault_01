@@ -6,6 +6,8 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
+// These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `clone`, `fmt`
+
 String initializeVault(
         {required String dbPath, required String encryptionKey}) =>
     VaultRust.instance.api.crateApiSimpleInitializeVault(
@@ -13,3 +15,51 @@ String initializeVault(
 
 PlatformInt64 saveMemory({required String content}) =>
     VaultRust.instance.api.crateApiSimpleSaveMemory(content: content);
+
+MemoryEntry getMemory({required PlatformInt64 id}) =>
+    VaultRust.instance.api.crateApiSimpleGetMemory(id: id);
+
+List<MemoryEntry> listMemories() =>
+    VaultRust.instance.api.crateApiSimpleListMemories();
+
+String deleteMemory({required PlatformInt64 id}) =>
+    VaultRust.instance.api.crateApiSimpleDeleteMemory(id: id);
+
+class MemoryEntry {
+  final PlatformInt64 id;
+  final String content;
+  final String tags;
+  final PlatformInt64 createdAt;
+  final PlatformInt64 updatedAt;
+  final int accessedCount;
+
+  const MemoryEntry({
+    required this.id,
+    required this.content,
+    required this.tags,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.accessedCount,
+  });
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      content.hashCode ^
+      tags.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      accessedCount.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MemoryEntry &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          content == other.content &&
+          tags == other.tags &&
+          createdAt == other.createdAt &&
+          updatedAt == other.updatedAt &&
+          accessedCount == other.accessedCount;
+}

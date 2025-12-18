@@ -28,33 +28,47 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_web.dart';
 
                   @protected String dco_decode_String(dynamic raw);
 
+@protected int dco_decode_i_32(dynamic raw);
+
 @protected PlatformInt64 dco_decode_i_64(dynamic raw);
 
+@protected List<MemoryEntry> dco_decode_list_memory_entry(dynamic raw);
+
 @protected Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
+
+@protected MemoryEntry dco_decode_memory_entry(dynamic raw);
 
 @protected int dco_decode_u_8(dynamic raw);
 
 @protected String sse_decode_String(SseDeserializer deserializer);
 
+@protected int sse_decode_i_32(SseDeserializer deserializer);
+
 @protected PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
+
+@protected List<MemoryEntry> sse_decode_list_memory_entry(SseDeserializer deserializer);
 
 @protected Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
 
-@protected int sse_decode_u_8(SseDeserializer deserializer);
+@protected MemoryEntry sse_decode_memory_entry(SseDeserializer deserializer);
 
-@protected int sse_decode_i_32(SseDeserializer deserializer);
+@protected int sse_decode_u_8(SseDeserializer deserializer);
 
 @protected bool sse_decode_bool(SseDeserializer deserializer);
 
 @protected void sse_encode_String(String self, SseSerializer serializer);
 
+@protected void sse_encode_i_32(int self, SseSerializer serializer);
+
 @protected void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
+
+@protected void sse_encode_list_memory_entry(List<MemoryEntry> self, SseSerializer serializer);
 
 @protected void sse_encode_list_prim_u_8_strict(Uint8List self, SseSerializer serializer);
 
-@protected void sse_encode_u_8(int self, SseSerializer serializer);
+@protected void sse_encode_memory_entry(MemoryEntry self, SseSerializer serializer);
 
-@protected void sse_encode_i_32(int self, SseSerializer serializer);
+@protected void sse_encode_u_8(int self, SseSerializer serializer);
 
 @protected void sse_encode_bool(bool self, SseSerializer serializer);
                 }
