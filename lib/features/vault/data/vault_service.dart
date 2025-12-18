@@ -1,83 +1,100 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:uuid/uuid.dart';
 import 'secret_model.dart';
 
-class VaultService {
-  static final VaultService _instance = VaultService._internal();
-  factory VaultService() => _instance;
-  VaultService._internal();
+// --- Providers ---
 
-  final List<SecretModel> _mockDatabase = [
-    const SecretModel(
-        id: '1',
-        title: 'Gmail',
-        value: 'password123',
-        username: 'user@gmail.com'),
-    const SecretModel(
-        id: '2', title: 'Netflix', value: 'myflixpass', username: 'chill_user'),
-    const SecretModel(id: '3', title: 'GitHub', value: 'git_secure_99'),
-  ];
+// 1. Storage Provider: Gives us the secure storage instance
+final secureStorageProvider = Provider<FlutterSecureStorage>((ref) {
+  // We must enable encryptedSharedPreferences for Android to be secure
+  AndroidOptions getAndroidOptions() => const AndroidOptions(
+        encryptedSharedPreferences: true,
+      );
 
-  List<SecretModel> getSecrets() {
-    return [..._mockDatabase];
-  }
-
-  void addSecret(SecretModel secret) {
-    _mockDatabase.add(secret);
-  }
-
-  void deleteSecret(String id) {
-    _mockDatabase.removeWhere((element) => element.id == id);
-  }
-
-  // NEW: Update Logic
-  void updateSecret(SecretModel updatedSecret) {
-    final index =
-        _mockDatabase.indexWhere((element) => element.id == updatedSecret.id);
-    if (index != -1) {
-      _mockDatabase[index] = updatedSecret;
-    }
-  }
-}
-
-final vaultListProvider =
-    NotifierProvider<VaultListNotifier, List<SecretModel>>(() {
-  return VaultListNotifier();
+  return FlutterSecureStorage(aOptions: getAndroidOptions());
 });
 
-class VaultListNotifier extends Notifier<List<SecretModel>> {
-  final _service = VaultService();
+// 2. Vault Provider: The StateNotifier that the UI watches
+final vaultProvider =
+    StateNotifierProvider<VaultNotifier, List<SecretModel>>((ref) {
+  final storage = ref.watch(secureStorageProvider);
+  return VaultNotifier(storage);
+});
 
-  @override
-  List<SecretModel> build() {
-    return _service.getSecrets();
+// --- Notifier Logic ---
+
+class VaultNotifier extends StateNotifier<List<SecretModel>> {
+  final FlutterSecureStorage _storage;
+  static const _storageKey = 'vault_data_01'; // The database key
+
+  VaultNotifier(this._storage) : super([]) {
+    // Attempt to load data as soon as this provider is initialized
+    _loadSecrets();
   }
 
-  void addSecret(String title, String value, String? username) {
+  // --- Persistence Helpers ---
+
+  Future<void> _loadSecrets() async {
+    try {
+      final String? jsonString = await _storage.read(key: _storageKey);
+
+      if (jsonString != null) {
+        // Decode: String -> List<dynamic> -> List<SecretModel>
+        final List<dynamic> jsonList = jsonDecode(jsonString);
+        state = jsonList.map((e) => SecretModel.fromMap(e)).toList();
+      }
+    } catch (e) {
+      // In a real app, you might want to log this error
+      debugPrint("Error loading secrets: $e");
+    }
+  }
+
+  Future<void> _saveSecrets(List<SecretModel> secrets) async {
+    try {
+      // Encode: List<SecretModel> -> List<Map> -> String
+      final List<Map<String, dynamic>> maps =
+          secrets.map((e) => e.toMap()).toList();
+      final String jsonString = jsonEncode(maps);
+
+      await _storage.write(key: _storageKey, value: jsonString);
+    } catch (e) {
+      debugPrint("Error saving secrets: $e");
+    }
+  }
+
+  // --- Actions (CRUD) ---
+
+  Future<void> addSecret(String title, String username, String value) async {
     final newSecret = SecretModel(
-      id: DateTime.now().toString(),
+      id: const Uuid().v4(), // Generates a unique random ID
       title: title,
-      value: value,
       username: username,
+      value: value,
     );
-    _service.addSecret(newSecret);
+
+    // Update state immediately
     state = [...state, newSecret];
+    // Persist to storage
+    await _saveSecrets(state);
   }
 
-  void removeSecret(String id) {
-    _service.deleteSecret(id);
+  Future<void> editSecret(
+      String id, String title, String username, String value) async {
     state = [
       for (final secret in state)
-        if (secret.id != id) secret,
+        if (secret.id == id)
+          secret.copyWith(title: title, username: username, value: value)
+        else
+          secret
     ];
+    await _saveSecrets(state);
   }
 
-  // NEW: Edit Logic
-  void editSecret(SecretModel updatedSecret) {
-    _service.updateSecret(updatedSecret);
-    // Update the specific item in the state list
-    state = [
-      for (final secret in state)
-        if (secret.id == updatedSecret.id) updatedSecret else secret,
-    ];
+  Future<void> deleteSecret(String id) async {
+    state = state.where((secret) => secret.id != id).toList();
+    await _saveSecrets(state);
   }
 }

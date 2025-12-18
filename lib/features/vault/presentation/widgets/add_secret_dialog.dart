@@ -81,19 +81,24 @@ class AddSecretDialog extends HookConsumerWidget {
                 title: titleController.text,
                 value: passwordController.text,
                 username: usernameController.text.isEmpty
-                    ? null
+                    ? ''
                     : usernameController.text,
               );
 
-              ref.read(vaultListProvider.notifier).editSecret(updatedSecret);
+              ref.read(vaultProvider.notifier).editSecret(
+                    updatedSecret.id,
+                    updatedSecret.title,
+                    updatedSecret.username,
+                    updatedSecret.value,
+                  );
             } else {
               // --- ADD NEW ---
-              ref.read(vaultListProvider.notifier).addSecret(
+              ref.read(vaultProvider.notifier).addSecret(
                     titleController.text,
-                    passwordController.text,
                     usernameController.text.isEmpty
-                        ? null
+                        ? ''
                         : usernameController.text,
+                    passwordController.text,
                   );
             }
 

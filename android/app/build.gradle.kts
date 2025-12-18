@@ -20,14 +20,13 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.vault_01"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        // ... other settings
+        applicationId "com.example.vault_01"
+        minSdkVersion 21 // Recommended to set this to 21
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
     }
 
     buildTypes {
@@ -37,7 +36,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
-}
+
 
 flutter {
     source = "../.."

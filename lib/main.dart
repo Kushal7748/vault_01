@@ -1,85 +1,47 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:path_provider/path_provider.dart';
-
-// Backend Imports
-import 'src/frb_generated/frb_generated.dart';
-import 'src/frb_generated/api/simple.dart';
-
-// Frontend UI Imports
-import 'core/theme/app_theme.dart';
 import 'features/auth/presentation/screens/login_screen.dart';
+import 'features/vault/presentation/screens/vault_home_screen.dart';
+import 'src/frb_generated/frb_generated.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 1. Initialize Rust Backend
-  await VaultRust.init();
+  // Attempt to initialize Rust bridge but tolerate failure (e.g., missing DLL on CI / dev machine)
+  try {
+    await VaultRust.init();
+  } catch (e, st) {
+    // Log and continue; the app can still run in mock mode or without native features
+    // (Use `VaultRust.initMock` in tests to provide deterministic behavior)
+    // ignore: avoid_print
+    print('flutter_rust_bridge init failed (continuing): $e\n$st');
+  }
 
-  // 2. Initialize Database
-  await setupDatabase();
-
-  // 3. Run the App (Wrapped in ProviderScope for Riverpod)
-  runApp(const ProviderScope(child: MyApp()));
+  // RUN THE APP
+  runApp(
+    const ProviderScope(
+      child: VaultApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class VaultApp extends StatelessWidget {
+  const VaultApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vault 01',
+      title: 'Vault_01',
       debugShowCheckedModeBanner: false,
-      // Use the Friend's Themes
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      // Load the Friend's Login Screen
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        useMaterial3: true,
+      ),
       home: const LoginScreen(),
+      routes: {
+        '/home': (context) => const VaultHomeScreen(),
+        '/login': (context) => const LoginScreen(),
+      },
     );
   }
-}
-
-// ---------------------------------------------------------
-// BACKEND UTILITY FUNCTIONS (Kept from your work)
-// ---------------------------------------------------------
-
-// Initialize database
-Future<void> setupDatabase() async {
-  try {
-    // 1. Get the correct cross-platform database path
-    final dbPath = await getDatabasePath();
-    print('📁 Database path: $dbPath');
-
-    // 2. Ensure directory exists
-    final file = File(dbPath);
-    final dir = file.parent;
-    if (!await dir.exists()) {
-      await dir.create(recursive: true);
-      print('✅ Created directory: ${dir.path}');
-    }
-
-    // 3. Call the Rust function with the path and key (await it so errors are caught here)
-    print(
-        '🔁 Skipping initializeVault (temporarily disabled due to Rust panic).');
-    // If you want to enable the Rust init, remove the following comment and ensure the Rust crate
-    // does not panic during initialization.
-    // print('🔁 Calling initializeVault...');
-    // await initializeVault(
-    //   dbPath: dbPath,
-    //   encryptionKey: 'your-secure-key-here',
-    // );
-    // print("✅ initializeVault completed");
-  } catch (e) {
-    print('Database setup failed: $e');
-    // We catch the error but don't stop the app, so the UI still loads
-  }
-}
-
-// Helper to determine the database file path
-Future<String> getDatabasePath() async {
-  final dir = await getApplicationDocumentsDirectory();
-  return '${dir.path}/vault.db';
 }

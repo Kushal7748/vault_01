@@ -1,39 +1,41 @@
 name: vault_01
-description: A secure vault application
+description: A secure password manager application.
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
+  # This was the issue. We updated it to support Dart 3.
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  
-  # State management
-  flutter_riverpod: ^2.4.0
-  
-  # Navigation
-  go_router: ^12.0.0
-  
-  # UI utilities
-  flutter_hooks: ^0.20.0
-  
-  # Functional programming utilities
-  fpdart: ^1.1.0
-  flutter_rust_bridge: ^2.11.1
-  path_provider: ^2.1.5
-  hooks_riverpod: ^2.6.1
-  path: ^1.8.0
-  
-  # Rust bindings
-  rust_lib_vault_01:
-    path: ./rust_builder
 
+  # State Management
+  flutter_hooks: ^0.20.0
+  hooks_riverpod: ^2.4.0
+  flutter_riverpod: ^2.4.0
+
+  # Storage & Utilities
+  flutter_secure_storage: ^9.0.0
+  uuid: ^4.2.1
+  path_provider: ^2.1.5
+  path: ^1.9.1
+
+  # Codegen / Native Bridge
+  flutter_rust_bridge: ^2.11.1
+
+  # Icons
+  cupertino_icons: ^1.0.2
+
+  # Authentication
+  google_sign_in: ^6.1.0
+  # ... existing dependencies
+  local_auth: ^2.1.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^2.0.0
   integration_test:
     sdk: flutter
 

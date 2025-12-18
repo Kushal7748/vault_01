@@ -1,5 +1,8 @@
-package com.example.vault_01
+package com.example.vault_01 // Keep your package name
 
-import io.flutter.embedding.android.FlutterActivity
+// CHANGE IMPORT:
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity : FlutterActivity()
+// CHANGE CLASS TO EXTEND FlutterFragmentActivity:
+class MainActivity: FlutterFragmentActivity() {
+}

@@ -23,7 +23,8 @@ class _InputScreenState extends State<InputScreen> {
     // FIX: We call 'saveMemory' instead of 'greet'
     // This matches the Rust function we just wrote.
     try {
-      await vault_api.saveMemory(content: text);
+      // saveMemory returns a PlatformInt64 (synchronous/native call), so don't await it
+      final _ = vault_api.saveMemory(content: text);
       setState(() {
         _statusMessage = "Memory saved successfully!";
       });
